@@ -9,6 +9,8 @@
   "item.teyvat_elements.geo_wand": "元素法杖·岩",
   "item.teyvat_elements.crystal_shard": "结晶片",
   "item.teyvat_elements.crystal_shard.tooltip": "拾取时转化为吸收心（护盾）",
+  "item.teyvat_elements.homa_staff": "护摩之杖",
+  "item.teyvat_elements.homa_staff.tooltip": "火元素长枪。生命值低于50%时，攻击力提高50%",
   "item.teyvat_elements.wand.tooltip": "对生物施加 %s 元素（1.0 元素量）",
   "apply.teyvat_elements.aura": "附着了 %s 元素（%s GU）",
   "apply.teyvat_elements.no_aura": "%s 元素无法附着，只能用于触发反应",

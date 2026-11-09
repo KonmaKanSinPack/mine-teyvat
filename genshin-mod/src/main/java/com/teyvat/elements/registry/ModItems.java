@@ -1,12 +1,15 @@
 package com.teyvat.elements.registry;
 
 import com.teyvat.elements.TeyvatElements;
+import com.teyvat.elements.TeyvatElements;
 import com.teyvat.elements.element.Element;
 import com.teyvat.elements.item.CrystalShardItem;
 import com.teyvat.elements.item.ElementWandItem;
+import com.teyvat.elements.item.HomaStaffItem;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -55,6 +58,27 @@ public final class ModItems {
     public static final DeferredItem<CrystalShardItem> CRYSTAL_SHARD = ITEMS.register("crystal_shard",
             () -> new CrystalShardItem(new Item.Properties()));
 
+    /** 护摩之杖：火元素长枪（第一件真武器；+8 攻击、攻速 1.2、距离 +1，低生命 +50% 攻击） */
+    public static final DeferredItem<HomaStaffItem> HOMA_STAFF = ITEMS.register("homa_staff",
+            () -> new HomaStaffItem(new Item.Properties().stacksTo(1)
+                    .attributes(ItemAttributeModifiers.builder()
+                            .add(Attributes.ATTACK_DAMAGE,
+                                    new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, 8.0,
+                                            AttributeModifier.Operation.ADD_VALUE),
+                                    EquipmentSlotGroup.MAINHAND)
+                            .add(Attributes.ATTACK_SPEED,
+                                    new AttributeModifier(Item.BASE_ATTACK_SPEED_ID, -2.8,
+                                            AttributeModifier.Operation.ADD_VALUE),
+                                    EquipmentSlotGroup.MAINHAND)
+                            // 长枪手感：触及距离 +1
+                            .add(Attributes.ENTITY_INTERACTION_RANGE,
+                                    new AttributeModifier(
+                                            ResourceLocation.fromNamespaceAndPath(
+                                                    TeyvatElements.MOD_ID, "homa_reach"),
+                                            1.0, AttributeModifier.Operation.ADD_VALUE),
+                                    EquipmentSlotGroup.MAINHAND)
+                            .build())));
+
     public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> TEYVAT_TAB =
             CREATIVE_TABS.register("main", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.teyvat_elements"))
@@ -68,6 +92,7 @@ public final class ModItems {
                         output.accept(DENDRO_WAND.get());
                         output.accept(GEO_WAND.get());
                         output.accept(CRYSTAL_SHARD.get());
+                        output.accept(HOMA_STAFF.get());
                     })
                     .build());
 

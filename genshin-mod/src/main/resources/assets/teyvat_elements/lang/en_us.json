@@ -9,6 +9,8 @@
   "item.teyvat_elements.geo_wand": "Geo Wand",
   "item.teyvat_elements.crystal_shard": "Crystal Shard",
   "item.teyvat_elements.crystal_shard.tooltip": "Grants absorption hearts on pickup",
+  "item.teyvat_elements.homa_staff": "Staff of Homa",
+  "item.teyvat_elements.homa_staff.tooltip": "Pyro polearm. +50% ATK when HP is below 50%",
   "item.teyvat_elements.wand.tooltip": "Applies %s to mobs (1.0 gauge)",
   "apply.teyvat_elements.aura": "Applied %s (%s GU)",
   "apply.teyvat_elements.no_aura": "%s cannot be applied as an aura; it only triggers reactions",

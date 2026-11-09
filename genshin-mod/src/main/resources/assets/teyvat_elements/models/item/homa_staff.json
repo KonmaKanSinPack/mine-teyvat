@@ -1,0 +1,137 @@
+{
+  "credit": "Teyvat Elements - 原创占位模型",
+  "texture_size": [16, 16],
+  "textures": {
+    "0": "teyvat_elements:item/homa_staff"
+  },
+  "elements": [
+    {
+      "comment": "枪杆（深红）",
+      "from": [7.4, -10, 7.4],
+      "to": [8.6, 12, 8.6],
+      "faces": {
+        "north": {"uv": [0, 0, 1, 1], "texture": "#0"},
+        "south": {"uv": [0, 0, 1, 1], "texture": "#0"},
+        "east":  {"uv": [0, 0, 1, 1], "texture": "#0"},
+        "west":  {"uv": [0, 0, 1, 1], "texture": "#0"},
+        "up":    {"uv": [0, 0, 1, 1], "texture": "#0"},
+        "down":  {"uv": [0, 0, 1, 1], "texture": "#0"}
+      }
+    },
+    {
+      "comment": "枪尾金箍",
+      "from": [6.9, -12, 6.9],
+      "to": [9.1, -10, 9.1],
+      "faces": {
+        "north": {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "south": {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "east":  {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "west":  {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "up":    {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "down":  {"uv": [1, 0, 2, 1], "texture": "#0"}
+      }
+    },
+    {
+      "comment": "枪头金环",
+      "from": [6.8, 12, 6.8],
+      "to": [9.2, 14.5, 9.2],
+      "faces": {
+        "north": {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "south": {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "east":  {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "west":  {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "up":    {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "down":  {"uv": [1, 0, 2, 1], "texture": "#0"}
+      }
+    },
+    {
+      "comment": "刃身（红）",
+      "from": [7.2, 14.5, 7.2],
+      "to": [8.8, 20.5, 8.8],
+      "faces": {
+        "north": {"uv": [2, 0, 3, 1], "texture": "#0"},
+        "south": {"uv": [2, 0, 3, 1], "texture": "#0"},
+        "east":  {"uv": [2, 0, 3, 1], "texture": "#0"},
+        "west":  {"uv": [2, 0, 3, 1], "texture": "#0"},
+        "up":    {"uv": [2, 0, 3, 1], "texture": "#0"},
+        "down":  {"uv": [2, 0, 3, 1], "texture": "#0"}
+      }
+    },
+    {
+      "comment": "刃尖（红，收窄）",
+      "from": [7.5, 20.5, 7.5],
+      "to": [8.5, 25, 8.5],
+      "faces": {
+        "north": {"uv": [3, 0, 4, 1], "texture": "#0"},
+        "south": {"uv": [3, 0, 4, 1], "texture": "#0"},
+        "east":  {"uv": [3, 0, 4, 1], "texture": "#0"},
+        "west":  {"uv": [3, 0, 4, 1], "texture": "#0"},
+        "up":    {"uv": [3, 0, 4, 1], "texture": "#0"},
+        "down":  {"uv": [3, 0, 4, 1], "texture": "#0"}
+      }
+    },
+    {
+      "comment": "左翼刃（金）",
+      "from": [5.6, 15.5, 7.5],
+      "to": [7.2, 18.5, 8.5],
+      "faces": {
+        "north": {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "south": {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "east":  {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "west":  {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "up":    {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "down":  {"uv": [1, 0, 2, 1], "texture": "#0"}
+      }
+    },
+    {
+      "comment": "右翼刃（金）",
+      "from": [8.8, 15.5, 7.5],
+      "to": [10.4, 18.5, 8.5],
+      "faces": {
+        "north": {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "south": {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "east":  {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "west":  {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "up":    {"uv": [1, 0, 2, 1], "texture": "#0"},
+        "down":  {"uv": [1, 0, 2, 1], "texture": "#0"}
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [0, 90, 35],
+      "translation": [0, 3.5, 0.5],
+      "scale": [0.85, 0.85, 0.85]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [0, -90, 35],
+      "translation": [0, 3.5, 0.5],
+      "scale": [0.85, 0.85, 0.85]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, 90, 25],
+      "translation": [1.13, 4.2, 1.13],
+      "scale": [0.6, 0.6, 0.6]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, -90, 25],
+      "translation": [1.13, 4.2, 1.13],
+      "scale": [0.6, 0.6, 0.6]
+    },
+    "gui": {
+      "rotation": [30, 135, 0],
+      "translation": [0.5, 3.5, 0],
+      "scale": [0.62, 0.62, 0.62]
+    },
+    "ground": {
+      "rotation": [0, 0, 0],
+      "translation": [0, 4, 0],
+      "scale": [0.5, 0.5, 0.5]
+    },
+    "fixed": {
+      "rotation": [0, 0, 0],
+      "translation": [0, 4, 0],
+      "scale": [0.7, 0.7, 0.7]
+    }
+  }
+}
