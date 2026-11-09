@@ -20,7 +20,8 @@ public final class WeaponModelProperties {
         event.enqueueWork(() -> {
             ItemPropertyFunction ascended = (stack, level, entity, seed) -> {
                 WeaponData data = stack.get(ModComponents.WEAPON_DATA);
-                return data != null && data.ascension() > 0 ? 1.0f : 0.0f;
+                // 3 阶（60 级突破后）换升阶模型
+                return data != null && data.ascension() >= 3 ? 1.0f : 0.0f;
             };
             ItemProperties.register(ModItems.HOMA_STAFF.get(),
                     ResourceLocation.fromNamespaceAndPath(TeyvatElements.MOD_ID, "ascended"),

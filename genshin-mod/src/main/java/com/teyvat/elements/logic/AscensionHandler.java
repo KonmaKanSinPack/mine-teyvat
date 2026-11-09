@@ -53,7 +53,7 @@ public final class AscensionHandler {
     private static int oreTier(ItemStack stack) {
         if (stack.is(ModItems.ENHANCEMENT_ORE.get())) return 1;
         if (stack.is(ModItems.ENHANCEMENT_ORE_FINE.get())) return 2;
-        if (stack.is(ModItems.ENHANCEMENT_ORE_MYSTIC.get())) return 5;
+        if (stack.is(ModItems.ENHANCEMENT_ORE_MYSTIC.get())) return 10;
         return 0;
     }
 

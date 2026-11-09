@@ -7,7 +7,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
  * 武器养成数据（存在物品组件里，跟随 ItemStack：掉落/装箱/交易都不丢）。
  *
  * @param level     当前等级（1 起）
- * @param ascension 突破阶数（0 阶上限 Lv.20，1 阶 Lv.40，2 阶 Lv.60）
+ * @param ascension 突破阶数：0 阶上限 Lv.20，1 阶 Lv.40，2 阶 Lv.60，
+ *                  3 阶 Lv.90 满级（60 级突破时换升阶模型）
  */
 public record WeaponData(int level, int ascension) {
     public static final WeaponData DEFAULT = new WeaponData(1, 0);
@@ -19,7 +20,7 @@ public record WeaponData(int level, int ascension) {
 
     /** 当前阶数下的等级上限 */
     public int maxLevel() {
-        return 20 * (ascension + 1);
+        return ascension >= 3 ? 90 : 20 * (ascension + 1);
     }
 
     public boolean canLevelUp() {
@@ -28,7 +29,7 @@ public record WeaponData(int level, int ascension) {
 
     /** 到上限且未满阶 = 可以突破 */
     public boolean canAscend() {
-        return level >= maxLevel() && ascension < 2;
+        return level >= maxLevel() && ascension < 3;
     }
 
     /** 加 n 级，到顶截断 */

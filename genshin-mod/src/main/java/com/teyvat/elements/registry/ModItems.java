@@ -71,7 +71,7 @@ public final class ModItems {
     /** 精锻用良矿：+2 级 */
     public static final DeferredItem<Item> ENHANCEMENT_ORE_FINE = ITEMS.register("enhancement_ore_fine",
             () -> new Item(new Item.Properties()));
-    /** 精锻用魔矿：+5 级 */
+    /** 精锻用魔矿：+10 级 */
     public static final DeferredItem<Item> ENHANCEMENT_ORE_MYSTIC = ITEMS.register("enhancement_ore_mystic",
             () -> new Item(new Item.Properties()));
 
