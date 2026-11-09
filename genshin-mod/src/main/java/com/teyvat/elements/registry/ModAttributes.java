@@ -25,5 +25,17 @@ public final class ModAttributes {
                     new RangedAttribute("attribute.teyvat_elements.physical_resistance", 0.0, -1.0, 0.9)
                             .setSyncable(true));
 
+    /** 元素精通：反应收益系数 = 1 + EM×0.002（100 EM ≈ +20%） */
+    public static final DeferredHolder<Attribute, Attribute> ELEMENTAL_MASTERY =
+            ATTRIBUTES.register("elemental_mastery", () ->
+                    new RangedAttribute("attribute.teyvat_elements.elemental_mastery", 0.0, 0.0, 2000.0)
+                            .setSyncable(true));
+
+    /** 暴击率：默认 5%（还原原神面板），暴击伤害 ×1.5 */
+    public static final DeferredHolder<Attribute, Attribute> CRIT_RATE =
+            ATTRIBUTES.register("crit_rate", () ->
+                    new RangedAttribute("attribute.teyvat_elements.crit_rate", 0.05, 0.0, 1.0)
+                            .setSyncable(true));
+
     private ModAttributes() {}
 }

@@ -22,5 +22,12 @@ public final class ModComponents {
                     .persistent(WeaponData.CODEC)
                     .build());
 
+    /** 武器刻印槽：5 槽位（位置即槽位类型），空槽为 ItemStack.EMPTY */
+    public static final Supplier<DataComponentType<java.util.List<net.minecraft.world.item.ItemStack>>> IMPRINTS =
+            COMPONENTS.register("imprints", () -> DataComponentType
+                    .<java.util.List<net.minecraft.world.item.ItemStack>>builder()
+                    .persistent(net.minecraft.world.item.ItemStack.OPTIONAL_CODEC.listOf(0, 5))
+                    .build());
+
     private ModComponents() {}
 }

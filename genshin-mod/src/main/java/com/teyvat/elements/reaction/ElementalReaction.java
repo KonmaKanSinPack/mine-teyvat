@@ -76,8 +76,19 @@ public abstract class ElementalReaction {
         if (reducedGauge <= 0) return 0;
         if (consumesAura() && aura.isEmpty()) data.removeAura(auraElement);
 
-        onReact(target, reducedGauge, origin);
+        onReact(target, scaleByMastery(reducedGauge, origin), origin);
         return reducedGauge;
+    }
+
+    /**
+     * 元素精通加成：反应表现（伤害/时长等）按 1 + EM×0.002 缩放。
+     * 统一挂在 trigger() 里，所有反应子类零改动获得精通收益。
+     */
+    private static double scaleByMastery(double reducedGauge, @Nullable LivingEntity origin) {
+        if (origin == null) return reducedGauge;
+        var mastery = origin.getAttribute(com.teyvat.elements.registry.ModAttributes.ELEMENTAL_MASTERY);
+        if (mastery == null || mastery.getValue() <= 0) return reducedGauge;
+        return reducedGauge * (1.0 + mastery.getValue() * 0.002);
     }
 
     /** 反应表现钩子：伤害、粒子、音效等。骨架阶段在服务端执行 */

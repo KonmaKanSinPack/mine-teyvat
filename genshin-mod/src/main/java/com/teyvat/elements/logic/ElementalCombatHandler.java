@@ -54,10 +54,17 @@ public final class ElementalCombatHandler {
             double reduced = reaction.trigger(target, data, gauge, attacker);
             if (reduced <= 0) continue;
 
+            // 元素精通：增幅倍率与加算增伤都吃 1 + EM×0.002
+            double emFactor = 1.0;
+            var mastery = attacker.getAttribute(com.teyvat.elements.registry.ModAttributes.ELEMENTAL_MASTERY);
+            if (mastery != null && mastery.getValue() > 0) {
+                emFactor += mastery.getValue() * 0.002;
+            }
+
             // 增幅=乘算放大；加算=附加固定增伤（激化系）
             float newAmount = switch (reaction.type()) {
-                case AMPLIFYING -> event.getAmount() * (float) reaction.multiplier();
-                case ADDITIVE -> event.getAmount() + (float) (reduced * 2.0 * reaction.multiplier());
+                case AMPLIFYING -> event.getAmount() * (float) (reaction.multiplier() * emFactor);
+                case ADDITIVE -> event.getAmount() + (float) (reduced * 2.0 * reaction.multiplier() * emFactor);
                 default -> event.getAmount(); // TRANSFORMATIVE 不会走到这里（findAmplifying 已过滤）
             };
             event.setAmount(newAmount);

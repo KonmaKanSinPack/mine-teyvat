@@ -6,6 +6,7 @@ import com.teyvat.elements.element.Element;
 import com.teyvat.elements.item.CrystalShardItem;
 import com.teyvat.elements.item.ElementWandItem;
 import com.teyvat.elements.item.HomaStaffItem;
+import com.teyvat.elements.item.ImprintItem;
 import com.teyvat.elements.weapon.WeaponData;
 
 import net.minecraft.core.registries.Registries;
@@ -78,6 +79,18 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> MAGIC_CRYSTAL_ORE_ITEM = ITEMS.register("magic_crystal_ore",
             () -> new BlockItem(ModBlocks.MAGIC_CRYSTAL_ORE.get(), new Item.Properties()));
 
+    // ---- 刻印五件套（生/死/时/空/理） ----
+    public static final DeferredItem<ImprintItem> IMPRINT_FLOWER = ITEMS.register("imprint_flower",
+            () -> new ImprintItem(ImprintItem.Slot.FLOWER, new Item.Properties()));
+    public static final DeferredItem<ImprintItem> IMPRINT_PLUME = ITEMS.register("imprint_plume",
+            () -> new ImprintItem(ImprintItem.Slot.PLUME, new Item.Properties()));
+    public static final DeferredItem<ImprintItem> IMPRINT_SANDS = ITEMS.register("imprint_sands",
+            () -> new ImprintItem(ImprintItem.Slot.SANDS, new Item.Properties()));
+    public static final DeferredItem<ImprintItem> IMPRINT_GOBLET = ITEMS.register("imprint_goblet",
+            () -> new ImprintItem(ImprintItem.Slot.GOBLET, new Item.Properties()));
+    public static final DeferredItem<ImprintItem> IMPRINT_CIRCLET = ITEMS.register("imprint_circlet",
+            () -> new ImprintItem(ImprintItem.Slot.CIRCLET, new Item.Properties()));
+
     /** 护摩之杖：火元素长枪（第一件真武器；+8 攻击、攻速 1.2、距离 +1，低生命 +50% 攻击） */
     public static final DeferredItem<HomaStaffItem> HOMA_STAFF = ITEMS.register("homa_staff",
             () -> new HomaStaffItem(new Item.Properties().stacksTo(1)
@@ -119,6 +132,11 @@ public final class ModItems {
                         output.accept(ENHANCEMENT_ORE_MYSTIC.get());
                         output.accept(MAGIC_CRYSTAL_ORE_ITEM.get());
                         output.accept(HOMA_STAFF.get());
+                        output.accept(IMPRINT_FLOWER.get());
+                        output.accept(IMPRINT_PLUME.get());
+                        output.accept(IMPRINT_SANDS.get());
+                        output.accept(IMPRINT_GOBLET.get());
+                        output.accept(IMPRINT_CIRCLET.get());
                     })
                     .build());
 

@@ -42,6 +42,10 @@ public final class ClientEvents {
                 event -> event.registerEntityRenderer(
                         com.teyvat.elements.registry.ModEntities.DENDRO_CORE.get(),
                         DendroCoreRenderer::new));
+        // 刻印界面注册
+        modEventBus.addListener(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent.class,
+                event -> event.register(com.teyvat.elements.registry.ModMenus.WEAPON_IMPRINT.get(),
+                        WeaponImprintScreen::new));
     }
 
     /** 给所有生物渲染器（含玩家）挂冻结冰壳层 */

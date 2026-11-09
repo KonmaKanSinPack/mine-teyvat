@@ -26,12 +26,16 @@ public class TeyvatElements {
         com.teyvat.elements.registry.ModAttributes.ATTRIBUTES.register(modEventBus);
         com.teyvat.elements.registry.ModComponents.COMPONENTS.register(modEventBus);
         com.teyvat.elements.registry.ModBlocks.BLOCKS.register(modEventBus);
+        com.teyvat.elements.registry.ModMenus.MENUS.register(modEventBus);
         ModNetworking.register(modEventBus);
 
-        // 把物理抗性属性挂到所有生物上
+        // 把自定义属性挂到所有生物上（物抗/精通/暴击率）
         modEventBus.addListener(net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent.class,
-                event -> event.getTypes().forEach(type ->
-                        event.add(type, com.teyvat.elements.registry.ModAttributes.PHYSICAL_RESISTANCE)));
+                event -> event.getTypes().forEach(type -> {
+                    event.add(type, com.teyvat.elements.registry.ModAttributes.PHYSICAL_RESISTANCE);
+                    event.add(type, com.teyvat.elements.registry.ModAttributes.ELEMENTAL_MASTERY);
+                    event.add(type, com.teyvat.elements.registry.ModAttributes.CRIT_RATE);
+                }));
 
         ReactionRegistry.bootstrap();
 
@@ -49,6 +53,9 @@ public class TeyvatElements {
 
         // 物理抗性结算（超导减抗的收益在此生效）
         NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.ResistanceHandler::onIncomingDamage);
+
+        // 暴击结算（直接攻击掷骰 ×1.5）
+        NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.CritHandler::onIncomingDamage);
 
         // 结晶片拾取 → 吸收心护盾
         NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.ShardPickupHandler::onPickup);
