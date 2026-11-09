@@ -46,17 +46,61 @@ public class HomaStaffItem extends ElementWandItem {
         super(Element.PYRO, 1.5, properties);
     }
 
-    /** 右键：打开刻印镶嵌界面 */
+    /** 战技冷却：5 秒 */
+    private static final int SKILL_COOLDOWN_TICKS = 100;
+
+    /**
+     * 右键分工：潜行+右键 = 刻印界面；右键 = 元素战技。
+     * （武器右键归战技是用户定的交互规范；护摩战技为占位实现：前方扇面 AoE 火附着）
+     */
     @Override
     public net.minecraft.world.InteractionResultHolder<ItemStack> use(Level level, Player player,
                                                                       net.minecraft.world.InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        if (!level.isClientSide && hand == net.minecraft.world.InteractionHand.MAIN_HAND) {
-            player.openMenu(new SimpleMenuProvider(
-                    (id, inv, p) -> new com.teyvat.elements.menu.WeaponImprintMenu(id, inv),
-                    stack.getHoverName()));
+        if (hand != net.minecraft.world.InteractionHand.MAIN_HAND) {
+            return net.minecraft.world.InteractionResultHolder.pass(stack);
+        }
+
+        // 潜行+右键 → 刻印界面
+        if (player.isShiftKeyDown()) {
+            if (!level.isClientSide) {
+                player.openMenu(new SimpleMenuProvider(
+                        (id, inv, p) -> new com.teyvat.elements.menu.WeaponImprintMenu(id, inv),
+                        stack.getHoverName()));
+            }
+            return net.minecraft.world.InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
+        }
+
+        // 右键 → 元素战技
+        if (!level.isClientSide && !player.getCooldowns().isOnCooldown(this)) {
+            castSkill(level, player);
+            player.getCooldowns().addCooldown(this, SKILL_COOLDOWN_TICKS);
         }
         return net.minecraft.world.InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
+    }
+
+    /** 护摩战技（占位）：正前方 2.5 格、半径 2 的扇面，范围内生物附着火 1.0 */
+    private void castSkill(Level level, Player player) {
+        net.minecraft.world.phys.Vec3 center = player.getEyePosition()
+                .add(player.getLookAngle().scale(2.5));
+        net.minecraft.world.phys.AABB box = new net.minecraft.world.phys.AABB(center, center).inflate(2.0);
+
+        int hit = 0;
+        for (LivingEntity target : level.getEntitiesOfClass(LivingEntity.class, box)) {
+            if (target == player) continue;
+            com.teyvat.elements.logic.ElementSystem.applyElement(
+                    target, Element.PYRO, 1.0, "skill:homa", player);
+            hit++;
+        }
+
+        if (level instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+            serverLevel.sendParticles(net.minecraft.core.particles.ParticleTypes.FLAME,
+                    center.x, center.y, center.z, 30, 0.8, 0.4, 0.8, 0.08);
+            serverLevel.playSound(null, player.blockPosition(),
+                    net.minecraft.sounds.SoundEvents.FIRECHARGE_USE,
+                    net.minecraft.sounds.SoundSource.PLAYERS, 0.9f, 1.1f);
+        }
+        TeyvatElements.LOGGER.info("homa skill cast by {}, {} targets", player.getName().getString(), hit);
     }
 
     @Override
@@ -70,6 +114,8 @@ public class HomaStaffItem extends ElementWandItem {
                 .withStyle(ChatFormatting.GOLD));
         tooltip.add(Component.translatable("item.teyvat_elements.homa_staff.tooltip")
                 .withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("item.teyvat_elements.homa_staff.skill")
+                .withStyle(ChatFormatting.DARK_GRAY));
     }
 
     @Override

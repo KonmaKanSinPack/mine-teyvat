@@ -11,6 +11,7 @@
   "item.teyvat_elements.crystal_shard.tooltip": "Grants absorption hearts on pickup",
   "item.teyvat_elements.homa_staff": "Staff of Homa",
   "item.teyvat_elements.homa_staff.tooltip": "Pyro polearm. +50% ATK when HP is below 50%",
+  "item.teyvat_elements.homa_staff.skill": "Right-click: Elemental Skill. Shift+Right-click: Imprints",
   "item.teyvat_elements.homa_staff.level": "Lv.%s/%s (Ascension %s)",
   "item.teyvat_elements.ascension_stone": "Weapon Ascension Stone",
   "item.teyvat_elements.imprint_flower": "Flower Imprint",

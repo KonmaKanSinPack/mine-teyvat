@@ -11,6 +11,7 @@
   "item.teyvat_elements.crystal_shard.tooltip": "拾取时转化为吸收心（护盾）",
   "item.teyvat_elements.homa_staff": "护摩之杖",
   "item.teyvat_elements.homa_staff.tooltip": "火元素长枪。生命值低于50%时，攻击力提高50%",
+  "item.teyvat_elements.homa_staff.skill": "右键：元素战技·火环。潜行+右键：刻印界面",
   "item.teyvat_elements.homa_staff.level": "Lv.%s/%s（突破 %s 阶）",
   "item.teyvat_elements.ascension_stone": "武器突破石",
   "item.teyvat_elements.imprint_flower": "生之印",
