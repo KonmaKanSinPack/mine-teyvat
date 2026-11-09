@@ -1,0 +1,8 @@
+{
+  "credit": "模型与贴图引自 Genshin Nature 1.5.0（ARR，仅限私人游玩）",
+  "parent": "teyvat_elements:custom/staff_of_homa_ascended",
+  "textures": {
+    "0": "teyvat_elements:item/staff_of_homa_ascended",
+    "particle": "teyvat_elements:item/staff_of_homa_ascended"
+  }
+}

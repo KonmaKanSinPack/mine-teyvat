@@ -4,5 +4,13 @@
   "textures": {
     "0": "teyvat_elements:item/staff_of_homa_texture",
     "particle": "teyvat_elements:item/staff_of_homa_texture"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "teyvat_elements:ascended": 1.0
+      },
+      "model": "teyvat_elements:item/homa_staff_ascended"
+    }
+  ]
 }

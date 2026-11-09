@@ -6,6 +6,7 @@ import com.teyvat.elements.element.Element;
 import com.teyvat.elements.item.CrystalShardItem;
 import com.teyvat.elements.item.ElementWandItem;
 import com.teyvat.elements.item.HomaStaffItem;
+import com.teyvat.elements.weapon.WeaponData;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -58,9 +59,14 @@ public final class ModItems {
     public static final DeferredItem<CrystalShardItem> CRYSTAL_SHARD = ITEMS.register("crystal_shard",
             () -> new CrystalShardItem(new Item.Properties()));
 
+    /** 突破石：武器升阶材料（铁砧右槽；当前创造页签直接给，掉落来源后续加） */
+    public static final DeferredItem<Item> ASCENSION_STONE = ITEMS.register("ascension_stone",
+            () -> new Item(new Item.Properties()));
+
     /** 护摩之杖：火元素长枪（第一件真武器；+8 攻击、攻速 1.2、距离 +1，低生命 +50% 攻击） */
     public static final DeferredItem<HomaStaffItem> HOMA_STAFF = ITEMS.register("homa_staff",
             () -> new HomaStaffItem(new Item.Properties().stacksTo(1)
+                    .component(ModComponents.WEAPON_DATA, WeaponData.DEFAULT)
                     .attributes(ItemAttributeModifiers.builder()
                             .add(Attributes.ATTACK_DAMAGE,
                                     new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, 8.0,
@@ -92,6 +98,7 @@ public final class ModItems {
                         output.accept(DENDRO_WAND.get());
                         output.accept(GEO_WAND.get());
                         output.accept(CRYSTAL_SHARD.get());
+                        output.accept(ASCENSION_STONE.get());
                         output.accept(HOMA_STAFF.get());
                     })
                     .build());

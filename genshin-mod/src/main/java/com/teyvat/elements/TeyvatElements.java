@@ -24,6 +24,7 @@ public class TeyvatElements {
         ModItems.CREATIVE_TABS.register(modEventBus);
         com.teyvat.elements.registry.ModEntities.ENTITY_TYPES.register(modEventBus);
         com.teyvat.elements.registry.ModAttributes.ATTRIBUTES.register(modEventBus);
+        com.teyvat.elements.registry.ModComponents.COMPONENTS.register(modEventBus);
         ModNetworking.register(modEventBus);
 
         // 把物理抗性属性挂到所有生物上
@@ -54,6 +55,10 @@ public class TeyvatElements {
         // 冻结接管名单的离场清理（防止死亡/卸载导致的 UUID 泄漏）
         NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.FreezeController::onEntityLeaveLevel);
 
+        // 武器养成：击杀经验 + 铁砧突破
+        NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.WeaponXpHandler::onLivingDeath);
+        NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.AscensionHandler::onAnvilUpdate);
+
         // 玩家开始追踪某实体时补发附着同步（否则走近已有附着的怪看不到图标）
         NeoForge.EVENT_BUS.addListener(net.neoforged.neoforge.event.entity.player.PlayerEvent.StartTracking.class,
                 event -> {
@@ -66,6 +71,9 @@ public class TeyvatElements {
         // 客户端专属渲染（图标公告板 + 冻结冰壳）仅在物理客户端注册，避免专用服务器加载客户端类
         if (net.neoforged.fml.loading.FMLEnvironment.dist == net.neoforged.api.distmarker.Dist.CLIENT) {
             com.teyvat.elements.client.ClientEvents.register(modEventBus);
+            // 武器升阶模型谓词
+            modEventBus.addListener(net.neoforged.fml.event.lifecycle.FMLClientSetupEvent.class,
+                    com.teyvat.elements.client.WeaponModelProperties::register);
         }
 
         // 探针：注册表冻结后验证物品/页签真的进了注册表（排查"创造栏搜不到"用）

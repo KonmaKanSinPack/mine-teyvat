@@ -2,6 +2,8 @@ package com.teyvat.elements.item;
 
 import com.teyvat.elements.TeyvatElements;
 import com.teyvat.elements.element.Element;
+import com.teyvat.elements.registry.ModComponents;
+import com.teyvat.elements.weapon.WeaponData;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -24,6 +26,9 @@ import net.minecraft.world.level.Level;
 public class HomaStaffItem extends ElementWandItem {
     private static final ResourceLocation HOMA_PASSIVE_ID =
             ResourceLocation.fromNamespaceAndPath(TeyvatElements.MOD_ID, "homa_passive");
+    /** 等级加成的修改器 ID（与护摩被动分开，两者可叠加） */
+    private static final ResourceLocation LEVEL_BONUS_ID =
+            ResourceLocation.fromNamespaceAndPath(TeyvatElements.MOD_ID, "weapon_level_bonus");
     /** 低生命阈值与增益倍率（还原护摩被动） */
     private static final float LOW_HP_THRESHOLD = 0.5f;
     private static final double ATTACK_BONUS = 0.5;
@@ -37,6 +42,11 @@ public class HomaStaffItem extends ElementWandItem {
     public void appendHoverText(ItemStack stack, TooltipContext context,
                                 java.util.List<net.minecraft.network.chat.Component> tooltip,
                                 net.minecraft.world.item.TooltipFlag flag) {
+        WeaponData data = stack.getOrDefault(ModComponents.WEAPON_DATA, WeaponData.DEFAULT);
+        tooltip.add(net.minecraft.network.chat.Component.translatable(
+                        "item.teyvat_elements.homa_staff.level",
+                        data.level(), data.maxLevel(), data.ascension())
+                .withStyle(net.minecraft.ChatFormatting.GOLD));
         tooltip.add(net.minecraft.network.chat.Component
                 .translatable("item.teyvat_elements.homa_staff.tooltip")
                 .withStyle(net.minecraft.ChatFormatting.GRAY));
@@ -52,13 +62,23 @@ public class HomaStaffItem extends ElementWandItem {
 
         // 引用比较是有意的：inventoryTick 传入的就是手持的那个 ItemStack 实例
         boolean wielding = selected && living.getMainHandItem() == stack;
-        boolean lowHp = living.getHealth() < living.getMaxHealth() * LOW_HP_THRESHOLD;
 
+        // 护摩被动：低生命 +50% 攻击
+        boolean lowHp = living.getHealth() < living.getMaxHealth() * LOW_HP_THRESHOLD;
         if (wielding && lowHp) {
             attack.addOrUpdateTransientModifier(new AttributeModifier(
                     HOMA_PASSIVE_ID, ATTACK_BONUS, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         } else {
             attack.removeModifier(HOMA_PASSIVE_ID);
+        }
+
+        // 等级加成：+0.2 × (等级-1)，主手持握才生效
+        WeaponData data = stack.getOrDefault(ModComponents.WEAPON_DATA, WeaponData.DEFAULT);
+        if (wielding && data.level() > 1) {
+            attack.addOrUpdateTransientModifier(new AttributeModifier(
+                    LEVEL_BONUS_ID, data.attackBonus(), AttributeModifier.Operation.ADD_VALUE));
+        } else {
+            attack.removeModifier(LEVEL_BONUS_ID);
         }
     }
 }
