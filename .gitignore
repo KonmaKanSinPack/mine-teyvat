@@ -2,6 +2,8 @@
 Game_MC/
 .tools/
 
+./docs_agent
+./doces_human
 # 本机环境备忘（含机器特定路径，不入库）
 local.md
 
