@@ -64,8 +64,14 @@ public final class ModItems {
     public static final DeferredItem<Item> ASCENSION_STONE = ITEMS.register("ascension_stone",
             () -> new Item(new Item.Properties()));
 
-    /** 精锻魔矿：武器升级狗粮（魔晶矿掉落；铁砧右槽免费升 1 级） */
+    /** 精锻用杂矿：+1 级 */
     public static final DeferredItem<Item> ENHANCEMENT_ORE = ITEMS.register("enhancement_ore",
+            () -> new Item(new Item.Properties()));
+    /** 精锻用良矿：+2 级 */
+    public static final DeferredItem<Item> ENHANCEMENT_ORE_FINE = ITEMS.register("enhancement_ore_fine",
+            () -> new Item(new Item.Properties()));
+    /** 精锻用魔矿：+5 级 */
+    public static final DeferredItem<Item> ENHANCEMENT_ORE_MYSTIC = ITEMS.register("enhancement_ore_mystic",
             () -> new Item(new Item.Properties()));
 
     /** 魔晶矿方块物品 */
@@ -109,6 +115,8 @@ public final class ModItems {
                         output.accept(CRYSTAL_SHARD.get());
                         output.accept(ASCENSION_STONE.get());
                         output.accept(ENHANCEMENT_ORE.get());
+                        output.accept(ENHANCEMENT_ORE_FINE.get());
+                        output.accept(ENHANCEMENT_ORE_MYSTIC.get());
                         output.accept(MAGIC_CRYSTAL_ORE_ITEM.get());
                         output.accept(HOMA_STAFF.get());
                     })

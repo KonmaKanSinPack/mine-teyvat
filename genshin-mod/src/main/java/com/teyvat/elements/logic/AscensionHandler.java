@@ -9,11 +9,11 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.event.AnvilUpdateEvent;
 
 /**
- * 武器养成（铁砧一站式）：武器（左）+ 突破石（右）。
+ * 武器养成（铁砧一站式）：武器（左）+ 材料（右）。
  *
  * <ul>
- *   <li>未到等级上限：升 1 级，消耗玩家经验 {@link WeaponData#levelUpCost()} 级</li>
- *   <li>到上限且未满阶：突破升一阶，消耗 5 级经验</li>
+ *   <li>武器 + 突破石：到等级上限时突破升阶（5 级玩家经验）</li>
+ *   <li>武器 + 精锻用杂矿/良矿/魔矿：升 1/2/5 级（到顶截断，1 级经验手续费）</li>
  *   <li>满级满阶：无配方</li>
  * </ul>
  */
@@ -23,7 +23,6 @@ public final class AscensionHandler {
     public static void onAnvilUpdate(AnvilUpdateEvent event) {
         ItemStack left = event.getLeft();
         if (!(left.getItem() instanceof HomaStaffItem)) return;
-        if (!event.getRight().is(ModItems.ASCENSION_STONE.get())) return;
 
         WeaponData data = left.getOrDefault(ModComponents.WEAPON_DATA, WeaponData.DEFAULT);
 
@@ -38,15 +37,24 @@ public final class AscensionHandler {
             return;
         }
 
-        // 精锻魔矿：免费升 1 级（材料路线，1 级经验手续费）
-        if (event.getRight().is(ModItems.ENHANCEMENT_ORE.get())) {
+        // 精锻矿三档：杂矿 +1 / 良矿 +2 / 魔矿 +5
+        int gain = oreTier(event.getRight());
+        if (gain > 0) {
             if (!data.canLevelUp()) return;
             ItemStack output = left.copy();
-            output.set(ModComponents.WEAPON_DATA, data.levelUp());
+            output.set(ModComponents.WEAPON_DATA, data.addLevels(gain));
             event.setOutput(output);
             event.setCost(1);
             event.setMaterialCost(1);
         }
+    }
+
+    /** 精锻矿档位 → 升级数；非精锻矿返回 0 */
+    private static int oreTier(ItemStack stack) {
+        if (stack.is(ModItems.ENHANCEMENT_ORE.get())) return 1;
+        if (stack.is(ModItems.ENHANCEMENT_ORE_FINE.get())) return 2;
+        if (stack.is(ModItems.ENHANCEMENT_ORE_MYSTIC.get())) return 5;
+        return 0;
     }
 
     private AscensionHandler() {}

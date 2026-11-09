@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "teyvat_elements:enhancement_ore" },
+    { "item": "teyvat_elements:enhancement_ore" }
+  ],
+  "result": { "id": "teyvat_elements:enhancement_ore_fine", "count": 1 }
+}

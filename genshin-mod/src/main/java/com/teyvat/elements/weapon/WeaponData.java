@@ -31,6 +31,11 @@ public record WeaponData(int level, int ascension) {
         return level >= maxLevel() && ascension < 2;
     }
 
+    /** 加 n 级，到顶截断 */
+    public WeaponData addLevels(int n) {
+        return new WeaponData(Math.min(level + n, maxLevel()), ascension);
+    }
+
     public WeaponData levelUp() {
         return new WeaponData(level + 1, ascension);
     }

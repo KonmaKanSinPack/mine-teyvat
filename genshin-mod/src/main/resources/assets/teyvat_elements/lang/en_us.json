@@ -14,6 +14,8 @@
   "item.teyvat_elements.homa_staff.level": "Lv.%s/%s (Ascension %s)",
   "item.teyvat_elements.ascension_stone": "Weapon Ascension Stone",
   "item.teyvat_elements.enhancement_ore": "Enhancement Ore",
+  "item.teyvat_elements.enhancement_ore_fine": "Fine Enhancement Ore",
+  "item.teyvat_elements.enhancement_ore_mystic": "Mystic Enhancement Ore",
   "block.teyvat_elements.magic_crystal_ore": "Magic Crystal Ore",
   "weapon.teyvat_elements.level_up": "%s reached Lv.%s!",
   "item.teyvat_elements.wand.tooltip": "Applies %s to mobs (1.0 gauge)",
