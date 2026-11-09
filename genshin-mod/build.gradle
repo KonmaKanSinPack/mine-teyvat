@@ -1,0 +1,92 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+    id 'idea'
+}
+
+version = mod_version
+group = mod_group_id
+
+sourceSets.main.resources {
+    // 数据生成器输出目录（本轮未启用 datagen，保留目录约定）
+    srcDir('src/generated/resources')
+}
+
+base {
+    archivesName = mod_id
+}
+
+// maven.neoforged.net 本机不可达，NeoForge 构件走 creeperhost / forgecdn 镜像
+repositories {
+    maven { url = 'https://maven.creeperhost.net' }
+    maven { url = 'https://neoforged.forgecdn.net/releases' }
+    // mojang-meta：minecraft-dependencies 清单只在此路径（forgecdn 镜像自 neoforged 官方同名路径）
+    maven { url = 'https://neoforged.forgecdn.net/mojang-meta' }
+    maven { url = 'https://maven.aliyun.com/repository/public' }
+    mavenCentral()
+}
+
+// ModDevGradle 会自行注入 maven.neoforged.net 官方仓库；该域名在本机被 SNI 阻断，
+// 每个构件都要先等它 TLS 超时（数十秒）才会落到镜像，实测把构建拖到 15 分钟级。
+// 镜像已覆盖全部所需构件，故在配置阶段末尾移除官方源，让失败根本不发生。
+afterEvaluate {
+    repositories.removeIf { repo ->
+        repo instanceof MavenArtifactRepository && repo.url.toString().contains('maven.neoforged.net')
+    }
+}
+
+// Mojang 在 1.21.1 向玩家分发 Java 21，mod 以 Java 21 为目标
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = project.neo_version
+
+    // 不使用 Parchment 映射：其 maven 本机不可达，骨架阶段官方 Mojmap 已够用
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+// 元数据模板展开：把 gradle.properties 中的版本/ID 注入 neoforge.mods.toml
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

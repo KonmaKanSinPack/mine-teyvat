@@ -1,0 +1,8 @@
+# 游戏运行环境与大型工具不入库
+Game_MC/
+.tools/
+
+# 本机环境备忘（含机器特定路径，不入库）
+local.md
+
+# mod 工程自身的忽略项见 genshin-mod/.gitignore

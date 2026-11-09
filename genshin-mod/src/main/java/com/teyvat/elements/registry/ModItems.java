@@ -1,0 +1,75 @@
+package com.teyvat.elements.registry;
+
+import com.teyvat.elements.TeyvatElements;
+import com.teyvat.elements.element.Element;
+import com.teyvat.elements.item.CrystalShardItem;
+import com.teyvat.elements.item.ElementWandItem;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+/**
+ * 物品与创造模式页签注册。
+ */
+public final class ModItems {
+    public static final DeferredRegister.Items ITEMS =
+            DeferredRegister.createItems(TeyvatElements.MOD_ID);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS =
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TeyvatElements.MOD_ID);
+
+    /** 法杖基础属性：+3 攻击伤害（总 4 点），让增幅倍率（1.5/2.0x）有可感知的基数 */
+    private static Item.Properties wandProps() {
+        return new Item.Properties().stacksTo(1).attributes(ItemAttributeModifiers.builder()
+                .add(Attributes.ATTACK_DAMAGE,
+                        new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, 3.0,
+                                AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.MAINHAND)
+                .build());
+    }
+
+    public static final DeferredItem<ElementWandItem> PYRO_WAND = ITEMS.register("pyro_wand",
+            () -> new ElementWandItem(Element.PYRO, 1.0, wandProps()));
+    public static final DeferredItem<ElementWandItem> HYDRO_WAND = ITEMS.register("hydro_wand",
+            () -> new ElementWandItem(Element.HYDRO, 1.0, wandProps()));
+    public static final DeferredItem<ElementWandItem> ELECTRO_WAND = ITEMS.register("electro_wand",
+            () -> new ElementWandItem(Element.ELECTRO, 1.0, wandProps()));
+    public static final DeferredItem<ElementWandItem> CRYO_WAND = ITEMS.register("cryo_wand",
+            () -> new ElementWandItem(Element.CRYO, 1.0, wandProps()));
+    public static final DeferredItem<ElementWandItem> ANEMO_WAND = ITEMS.register("anemo_wand",
+            () -> new ElementWandItem(Element.ANEMO, 1.0, wandProps()));
+    public static final DeferredItem<ElementWandItem> DENDRO_WAND = ITEMS.register("dendro_wand",
+            () -> new ElementWandItem(Element.DENDRO, 1.0, wandProps()));
+    public static final DeferredItem<ElementWandItem> GEO_WAND = ITEMS.register("geo_wand",
+            () -> new ElementWandItem(Element.GEO, 1.0, wandProps()));
+
+    /** 结晶片：结晶反应产物，拾取转护盾（不进背包） */
+    public static final DeferredItem<CrystalShardItem> CRYSTAL_SHARD = ITEMS.register("crystal_shard",
+            () -> new CrystalShardItem(new Item.Properties()));
+
+    public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> TEYVAT_TAB =
+            CREATIVE_TABS.register("main", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.teyvat_elements"))
+                    .icon(() -> new ItemStack(PYRO_WAND.get()))
+                    .displayItems((params, output) -> {
+                        output.accept(PYRO_WAND.get());
+                        output.accept(HYDRO_WAND.get());
+                        output.accept(ELECTRO_WAND.get());
+                        output.accept(CRYO_WAND.get());
+                        output.accept(ANEMO_WAND.get());
+                        output.accept(DENDRO_WAND.get());
+                        output.accept(GEO_WAND.get());
+                        output.accept(CRYSTAL_SHARD.get());
+                    })
+                    .build());
+
+    private ModItems() {}
+}

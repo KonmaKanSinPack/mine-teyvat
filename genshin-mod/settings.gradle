@@ -1,0 +1,16 @@
+pluginManagement {
+    repositories {
+        // maven.neoforged.net 在本机网络不可达（DNS 污染/SNI 阻断），改用其内容镜像：
+        // creeperhost 与 forgecdn 均为 NeoForge 官方构件的完整镜像
+        maven { url = 'https://maven.creeperhost.net' }
+        maven { url = 'https://neoforged.forgecdn.net/releases' }
+        maven { url = 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url = 'https://maven.neoforged.net/releases' }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+// 不使用 foojay 工具链自动下载插件：工作区已内置便携 JDK 21（见 ../local.md），
+// 且其依赖的插件门户在本机网络不可达
+rootProject.name = 'teyvat-elements'
