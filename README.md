@@ -53,9 +53,9 @@ gradlew.bat build   # 需 JDK 21；产物在 build/libs/
 
 ```
 genshin-mod/     NeoForge mod 工程（ModDevGradle）
-docs_human/      人读文档（调研与设计方案）
 Game_MC/         本地游戏运行环境（gitignored）
 .tools/          便携 JDK21 / Gradle（gitignored）
+docs_human/      人读文档（gitignored，仅本地）
 docs_agent/      逐轮开发记录（gitignored，仅本地）
 ```
 
