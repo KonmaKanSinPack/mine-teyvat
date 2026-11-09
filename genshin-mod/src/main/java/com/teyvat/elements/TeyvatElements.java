@@ -55,8 +55,8 @@ public class TeyvatElements {
         // 冻结接管名单的离场清理（防止死亡/卸载导致的 UUID 泄漏）
         NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.FreezeController::onEntityLeaveLevel);
 
-        // 武器养成：击杀经验 + 铁砧突破
-        NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.WeaponXpHandler::onLivingDeath);
+        // 武器养成：经验球喂养 + 铁砧突破
+        NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.WeaponXpHandler::onPickupXp);
         NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.AscensionHandler::onAnvilUpdate);
 
         // 玩家开始追踪某实体时补发附着同步（否则走近已有附着的怪看不到图标）
