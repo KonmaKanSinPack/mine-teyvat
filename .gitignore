@@ -4,7 +4,8 @@ Game_MC/
 
 ./docs_agent
 ./doces_human
-# 本机环境备忘（含机器特定路径，不入库）
+# 本机环境备忘与 agent 开发记录（不入库）
 local.md
+docs_agent/
 
 # mod 工程自身的忽略项见 genshin-mod/.gitignore
