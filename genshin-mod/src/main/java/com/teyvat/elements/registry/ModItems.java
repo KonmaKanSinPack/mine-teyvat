@@ -11,6 +11,7 @@ import com.teyvat.elements.weapon.WeaponData;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -63,6 +64,14 @@ public final class ModItems {
     public static final DeferredItem<Item> ASCENSION_STONE = ITEMS.register("ascension_stone",
             () -> new Item(new Item.Properties()));
 
+    /** 精锻魔矿：武器升级狗粮（魔晶矿掉落；铁砧右槽免费升 1 级） */
+    public static final DeferredItem<Item> ENHANCEMENT_ORE = ITEMS.register("enhancement_ore",
+            () -> new Item(new Item.Properties()));
+
+    /** 魔晶矿方块物品 */
+    public static final DeferredItem<BlockItem> MAGIC_CRYSTAL_ORE_ITEM = ITEMS.register("magic_crystal_ore",
+            () -> new BlockItem(ModBlocks.MAGIC_CRYSTAL_ORE.get(), new Item.Properties()));
+
     /** 护摩之杖：火元素长枪（第一件真武器；+8 攻击、攻速 1.2、距离 +1，低生命 +50% 攻击） */
     public static final DeferredItem<HomaStaffItem> HOMA_STAFF = ITEMS.register("homa_staff",
             () -> new HomaStaffItem(new Item.Properties().stacksTo(1)
@@ -99,6 +108,8 @@ public final class ModItems {
                         output.accept(GEO_WAND.get());
                         output.accept(CRYSTAL_SHARD.get());
                         output.accept(ASCENSION_STONE.get());
+                        output.accept(ENHANCEMENT_ORE.get());
+                        output.accept(MAGIC_CRYSTAL_ORE_ITEM.get());
                         output.accept(HOMA_STAFF.get());
                     })
                     .build());

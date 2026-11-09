@@ -25,6 +25,7 @@ public class TeyvatElements {
         com.teyvat.elements.registry.ModEntities.ENTITY_TYPES.register(modEventBus);
         com.teyvat.elements.registry.ModAttributes.ATTRIBUTES.register(modEventBus);
         com.teyvat.elements.registry.ModComponents.COMPONENTS.register(modEventBus);
+        com.teyvat.elements.registry.ModBlocks.BLOCKS.register(modEventBus);
         ModNetworking.register(modEventBus);
 
         // 把物理抗性属性挂到所有生物上
@@ -55,8 +56,7 @@ public class TeyvatElements {
         // 冻结接管名单的离场清理（防止死亡/卸载导致的 UUID 泄漏）
         NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.FreezeController::onEntityLeaveLevel);
 
-        // 武器养成：经验球喂养 + 铁砧突破
-        NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.WeaponXpHandler::onPickupXp);
+        // 武器养成：铁砧升级（魔矿）与突破（突破石）
         NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.AscensionHandler::onAnvilUpdate);
 
         // 玩家开始追踪某实体时补发附着同步（否则走近已有附着的怪看不到图标）
