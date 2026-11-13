@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import com.teyvat.elements.TeyvatElements;
 import com.teyvat.elements.entity.DendroCoreEntity;
 import com.teyvat.elements.entity.ElementalSlimeEntity;
+import com.teyvat.elements.entity.AbyssMageEntity;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
@@ -53,4 +54,18 @@ public final class ModEntities {
     public static final Supplier<EntityType<ElementalSlimeEntity>> HYDRO_SLIME = registerSlime("hydro_slime");
     public static final Supplier<EntityType<ElementalSlimeEntity>> ELECTRO_SLIME = registerSlime("electro_slime");
     public static final Supplier<EntityType<ElementalSlimeEntity>> CRYO_SLIME = registerSlime("cryo_slime");
+
+    /** 注册深渊法师（元素由实体类型决定） */
+    private static Supplier<EntityType<AbyssMageEntity>> registerMage(String name) {
+        return ENTITY_TYPES.register(name, () -> EntityType.Builder
+                .<AbyssMageEntity>of(AbyssMageEntity::new, MobCategory.MONSTER)
+                .sized(0.6f, 1.8f)
+                .clientTrackingRange(10)
+                .build("teyvat_elements:" + name));
+    }
+
+    public static final Supplier<EntityType<AbyssMageEntity>> PYRO_ABYSS_MAGE = registerMage("pyro_abyss_mage");
+    public static final Supplier<EntityType<AbyssMageEntity>> HYDRO_ABYSS_MAGE = registerMage("hydro_abyss_mage");
+    public static final Supplier<EntityType<AbyssMageEntity>> ELECTRO_ABYSS_MAGE = registerMage("electro_abyss_mage");
+    public static final Supplier<EntityType<AbyssMageEntity>> CRYO_ABYSS_MAGE = registerMage("cryo_abyss_mage");
 }

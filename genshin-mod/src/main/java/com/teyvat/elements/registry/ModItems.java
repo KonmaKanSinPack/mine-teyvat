@@ -251,6 +251,24 @@ public final class ModItems {
                     new net.neoforged.neoforge.common.DeferredSpawnEggItem(
                             ModEntities.CRYO_SLIME, 0x6B9BB0, 0x9FD8E8, new Item.Properties()));
 
+    // ---- 深渊法师刷怪蛋 ----
+    public static final DeferredItem<net.neoforged.neoforge.common.DeferredSpawnEggItem> PYRO_MAGE_EGG =
+            ITEMS.register("pyro_abyss_mage_spawn_egg", () ->
+                    new net.neoforged.neoforge.common.DeferredSpawnEggItem(
+                            ModEntities.PYRO_ABYSS_MAGE, 0x8C2A2A, 0xFF5A3C, new Item.Properties()));
+    public static final DeferredItem<net.neoforged.neoforge.common.DeferredSpawnEggItem> HYDRO_MAGE_EGG =
+            ITEMS.register("hydro_abyss_mage_spawn_egg", () ->
+                    new net.neoforged.neoforge.common.DeferredSpawnEggItem(
+                            ModEntities.HYDRO_ABYSS_MAGE, 0x2B4C8C, 0x3C8CFF, new Item.Properties()));
+    public static final DeferredItem<net.neoforged.neoforge.common.DeferredSpawnEggItem> ELECTRO_MAGE_EGG =
+            ITEMS.register("electro_abyss_mage_spawn_egg", () ->
+                    new net.neoforged.neoforge.common.DeferredSpawnEggItem(
+                            ModEntities.ELECTRO_ABYSS_MAGE, 0x6B3AA0, 0xB15CFF, new Item.Properties()));
+    public static final DeferredItem<net.neoforged.neoforge.common.DeferredSpawnEggItem> CRYO_MAGE_EGG =
+            ITEMS.register("cryo_abyss_mage_spawn_egg", () ->
+                    new net.neoforged.neoforge.common.DeferredSpawnEggItem(
+                            ModEntities.CRYO_ABYSS_MAGE, 0x6B9BB0, 0x9FD8E8, new Item.Properties()));
+
     /** 提瓦特·怪物（刷怪蛋） */
     public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> MONSTERS_TAB =
             CREATIVE_TABS.register("monsters", () -> CreativeModeTab.builder()
@@ -261,6 +279,10 @@ public final class ModItems {
                         output.accept(HYDRO_SLIME_EGG.get());
                         output.accept(ELECTRO_SLIME_EGG.get());
                         output.accept(CRYO_SLIME_EGG.get());
+                        output.accept(PYRO_MAGE_EGG.get());
+                        output.accept(HYDRO_MAGE_EGG.get());
+                        output.accept(ELECTRO_MAGE_EGG.get());
+                        output.accept(CRYO_MAGE_EGG.get());
                     })
                     .build());
 

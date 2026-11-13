@@ -126,5 +126,13 @@
   "entity.teyvat_elements.electro_slime": "雷史莱姆",
   "item.teyvat_elements.electro_slime_spawn_egg": "雷史莱姆刷怪蛋",
   "entity.teyvat_elements.cryo_slime": "冰史莱姆",
-  "item.teyvat_elements.cryo_slime_spawn_egg": "冰史莱姆刷怪蛋"
+  "item.teyvat_elements.cryo_slime_spawn_egg": "冰史莱姆刷怪蛋",
+  "entity.teyvat_elements.pyro_abyss_mage": "火深渊法师",
+  "item.teyvat_elements.pyro_abyss_mage_spawn_egg": "火深渊法师刷怪蛋",
+  "entity.teyvat_elements.hydro_abyss_mage": "水深渊法师",
+  "item.teyvat_elements.hydro_abyss_mage_spawn_egg": "水深渊法师刷怪蛋",
+  "entity.teyvat_elements.electro_abyss_mage": "雷深渊法师",
+  "item.teyvat_elements.electro_abyss_mage_spawn_egg": "雷深渊法师刷怪蛋",
+  "entity.teyvat_elements.cryo_abyss_mage": "冰深渊法师",
+  "item.teyvat_elements.cryo_abyss_mage_spawn_egg": "冰深渊法师刷怪蛋"
 }

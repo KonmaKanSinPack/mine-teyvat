@@ -126,5 +126,13 @@
   "entity.teyvat_elements.electro_slime": "雷史萊姆",
   "item.teyvat_elements.electro_slime_spawn_egg": "雷史萊姆 Spawn Egg",
   "entity.teyvat_elements.cryo_slime": "冰史萊姆",
-  "item.teyvat_elements.cryo_slime_spawn_egg": "冰史萊姆 Spawn Egg"
+  "item.teyvat_elements.cryo_slime_spawn_egg": "冰史萊姆 Spawn Egg",
+  "entity.teyvat_elements.pyro_abyss_mage": "火深淵法師",
+  "item.teyvat_elements.pyro_abyss_mage_spawn_egg": "火深淵法師 Spawn Egg",
+  "entity.teyvat_elements.hydro_abyss_mage": "水深淵法師",
+  "item.teyvat_elements.hydro_abyss_mage_spawn_egg": "水深淵法師 Spawn Egg",
+  "entity.teyvat_elements.electro_abyss_mage": "雷深淵法師",
+  "item.teyvat_elements.electro_abyss_mage_spawn_egg": "雷深淵法師 Spawn Egg",
+  "entity.teyvat_elements.cryo_abyss_mage": "冰深淵法師",
+  "item.teyvat_elements.cryo_abyss_mage_spawn_egg": "冰深淵法師 Spawn Egg"
 }

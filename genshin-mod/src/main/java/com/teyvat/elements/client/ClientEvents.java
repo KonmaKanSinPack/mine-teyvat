@@ -68,6 +68,27 @@ public final class ClientEvents {
                             ctx -> new ElementalSlimeRenderer(ctx,
                                     ResourceLocation.fromNamespaceAndPath(
                                             TeyvatElements.MOD_ID, "textures/entity/cryo_slime.png")));
+                    // 深渊法师渲染器（唤魔者模型 + 元素配色）
+                    event.registerEntityRenderer(
+                            com.teyvat.elements.registry.ModEntities.PYRO_ABYSS_MAGE.get(),
+                            ctx -> new AbyssMageRenderer(ctx,
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            TeyvatElements.MOD_ID, "textures/entity/pyro_abyss_mage.png")));
+                    event.registerEntityRenderer(
+                            com.teyvat.elements.registry.ModEntities.HYDRO_ABYSS_MAGE.get(),
+                            ctx -> new AbyssMageRenderer(ctx,
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            TeyvatElements.MOD_ID, "textures/entity/hydro_abyss_mage.png")));
+                    event.registerEntityRenderer(
+                            com.teyvat.elements.registry.ModEntities.ELECTRO_ABYSS_MAGE.get(),
+                            ctx -> new AbyssMageRenderer(ctx,
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            TeyvatElements.MOD_ID, "textures/entity/electro_abyss_mage.png")));
+                    event.registerEntityRenderer(
+                            com.teyvat.elements.registry.ModEntities.CRYO_ABYSS_MAGE.get(),
+                            ctx -> new AbyssMageRenderer(ctx,
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            TeyvatElements.MOD_ID, "textures/entity/cryo_abyss_mage.png")));
                 });
         // 刻印界面注册
         modEventBus.addListener(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent.class,

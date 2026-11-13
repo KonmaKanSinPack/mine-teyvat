@@ -126,5 +126,13 @@
   "entity.teyvat_elements.electro_slime": "Electro Slime",
   "item.teyvat_elements.electro_slime_spawn_egg": "Electro Slime Spawn Egg",
   "entity.teyvat_elements.cryo_slime": "Cryo Slime",
-  "item.teyvat_elements.cryo_slime_spawn_egg": "Cryo Slime Spawn Egg"
+  "item.teyvat_elements.cryo_slime_spawn_egg": "Cryo Slime Spawn Egg",
+  "entity.teyvat_elements.pyro_abyss_mage": "Pyro Abyss Mage",
+  "item.teyvat_elements.pyro_abyss_mage_spawn_egg": "Pyro Abyss Mage Spawn Egg",
+  "entity.teyvat_elements.hydro_abyss_mage": "Hydro Abyss Mage",
+  "item.teyvat_elements.hydro_abyss_mage_spawn_egg": "Hydro Abyss Mage Spawn Egg",
+  "entity.teyvat_elements.electro_abyss_mage": "Electro Abyss Mage",
+  "item.teyvat_elements.electro_abyss_mage_spawn_egg": "Electro Abyss Mage Spawn Egg",
+  "entity.teyvat_elements.cryo_abyss_mage": "Cryo Abyss Mage",
+  "item.teyvat_elements.cryo_abyss_mage_spawn_egg": "Cryo Abyss Mage Spawn Egg"
 }

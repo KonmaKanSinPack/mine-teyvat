@@ -42,6 +42,17 @@ public class TeyvatElements {
                     event.put(com.teyvat.elements.registry.ModEntities.HYDRO_SLIME.get(), attributes);
                     event.put(com.teyvat.elements.registry.ModEntities.ELECTRO_SLIME.get(), attributes);
                     event.put(com.teyvat.elements.registry.ModEntities.CRYO_SLIME.get(), attributes);
+
+                    // 深渊法师属性：40 血，远程攻击
+                    var mageAttributes = net.minecraft.world.entity.Mob.createMobAttributes()
+                            .add(Attributes.MAX_HEALTH, 40.0)
+                            .add(Attributes.MOVEMENT_SPEED, 0.3)
+                            .add(Attributes.FOLLOW_RANGE, 20.0)
+                            .build();
+                    event.put(com.teyvat.elements.registry.ModEntities.PYRO_ABYSS_MAGE.get(), mageAttributes);
+                    event.put(com.teyvat.elements.registry.ModEntities.HYDRO_ABYSS_MAGE.get(), mageAttributes);
+                    event.put(com.teyvat.elements.registry.ModEntities.ELECTRO_ABYSS_MAGE.get(), mageAttributes);
+                    event.put(com.teyvat.elements.registry.ModEntities.CRYO_ABYSS_MAGE.get(), mageAttributes);
                 });
 
         // 把自定义属性挂到所有生物上（物抗/精通/暴击率）
