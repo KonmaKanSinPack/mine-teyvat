@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
  */
 public class GenshinArrowRenderer extends ArrowRenderer<GenshinArrowEntity> {
     private static final ResourceLocation ARROW_TEXTURE =
-            ResourceLocation.withDefaultNamespace("textures/entity/arrow.png");
+            ResourceLocation.withDefaultNamespace("textures/entity/projectiles/arrow.png");
 
     public GenshinArrowRenderer(EntityRendererProvider.Context context) {
         super(context);
