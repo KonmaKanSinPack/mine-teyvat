@@ -60,6 +60,9 @@ public class TeyvatElements {
         // 结晶片拾取 → 吸收心护盾
         NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.ShardPickupHandler::onPickup);
 
+        // 岩造物共鸣：附近缓慢回盾
+        NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.GeoResonanceHandler::onPlayerTick);
+
         // 冻结接管名单的离场清理（防止死亡/卸载导致的 UUID 泄漏）
         NeoForge.EVENT_BUS.addListener(com.teyvat.elements.logic.FreezeController::onEntityLeaveLevel);
 
