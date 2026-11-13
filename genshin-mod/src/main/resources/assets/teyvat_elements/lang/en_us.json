@@ -117,5 +117,14 @@
   "item.teyvat_elements.skyward_harp.usage": "LMB: physical attack (shatter frozen targets with jump crits). Shift+RMB: imprints",
   "item.teyvat_elements.homa_staff.usage": "LMB: pyro hits (1.5U strong aura). RMB: flame ring AoE (5s CD). Passive: +50% ATK below 50% HP. Shift+RMB: imprints",
   "item.teyvat_elements.vortex_vanquisher.usage": "LMB: geo hits (crystallize). RMB: summon a 1x2 geo pillar (6s CD). Stand near pillars to regen shields. Shift+RMB: imprints",
-  "gui.teyvat_elements.weapon_imprint": "Weapon Imprints"
+  "gui.teyvat_elements.weapon_imprint": "Weapon Imprints",
+  "itemGroup.teyvat_elements.monsters": "Teyvat Monsters",
+  "entity.teyvat_elements.pyro_slime": "Pyro Slime",
+  "item.teyvat_elements.pyro_slime_spawn_egg": "Pyro Slime Spawn Egg",
+  "entity.teyvat_elements.hydro_slime": "Hydro Slime",
+  "item.teyvat_elements.hydro_slime_spawn_egg": "Hydro Slime Spawn Egg",
+  "entity.teyvat_elements.electro_slime": "Electro Slime",
+  "item.teyvat_elements.electro_slime_spawn_egg": "Electro Slime Spawn Egg",
+  "entity.teyvat_elements.cryo_slime": "Cryo Slime",
+  "item.teyvat_elements.cryo_slime_spawn_egg": "Cryo Slime Spawn Egg"
 }

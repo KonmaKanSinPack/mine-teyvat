@@ -208,12 +208,16 @@ public final class ElementSystem {
      * 元素免疫判定：把元素映射到原版伤害类型，复用原版的免疫规则
      * （火免/冻免是 EntityType 级属性，涵盖下界生物与冰雪生物）。
      */
-    /**
-     * 元素免疫判定：把元素映射到原版伤害类型，复用原版的免疫规则
+    /** 元素免疫判定：把元素映射到原版伤害类型，复用原版的免疫规则
      * （火免/冻免是 EntityType 级属性，涵盖下界生物与冰雪生物）。
      * 伤害管线（ElementalCombatHandler）也需要用它，故为 public。
      */
     public static boolean isImmuneToElement(LivingEntity target, Element element) {
+        // 元素史莱姆免疫自身元素（火史莱姆挂不了火等，与原神一致）
+        if (target instanceof com.teyvat.elements.entity.ElementalSlimeEntity slime
+                && slime.element().linkedElement() == element.linkedElement()) {
+            return true;
+        }
         var sources = target.damageSources();
         return switch (element) {
             case PYRO, BURNING -> target.isInvulnerableTo(sources.inFire());

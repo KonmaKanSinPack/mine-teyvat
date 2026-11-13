@@ -233,9 +233,39 @@ public final class ModItems {
                     })
                     .build());
 
+    // ---- 元素史莱姆刷怪蛋 ----
+    public static final DeferredItem<net.neoforged.neoforge.common.DeferredSpawnEggItem> PYRO_SLIME_EGG =
+            ITEMS.register("pyro_slime_spawn_egg", () ->
+                    new net.neoforged.neoforge.common.DeferredSpawnEggItem(
+                            ModEntities.PYRO_SLIME, 0xC62828, 0xFF5A3C, new Item.Properties()));
+    public static final DeferredItem<net.neoforged.neoforge.common.DeferredSpawnEggItem> HYDRO_SLIME_EGG =
+            ITEMS.register("hydro_slime_spawn_egg", () ->
+                    new net.neoforged.neoforge.common.DeferredSpawnEggItem(
+                            ModEntities.HYDRO_SLIME, 0x2B4C8C, 0x3C8CFF, new Item.Properties()));
+    public static final DeferredItem<net.neoforged.neoforge.common.DeferredSpawnEggItem> ELECTRO_SLIME_EGG =
+            ITEMS.register("electro_slime_spawn_egg", () ->
+                    new net.neoforged.neoforge.common.DeferredSpawnEggItem(
+                            ModEntities.ELECTRO_SLIME, 0x6B3AA0, 0xB15CFF, new Item.Properties()));
+    public static final DeferredItem<net.neoforged.neoforge.common.DeferredSpawnEggItem> CRYO_SLIME_EGG =
+            ITEMS.register("cryo_slime_spawn_egg", () ->
+                    new net.neoforged.neoforge.common.DeferredSpawnEggItem(
+                            ModEntities.CRYO_SLIME, 0x6B9BB0, 0x9FD8E8, new Item.Properties()));
+
+    /** 提瓦特·怪物（刷怪蛋） */
+    public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> MONSTERS_TAB =
+            CREATIVE_TABS.register("monsters", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.teyvat_elements.monsters"))
+                    .icon(() -> new ItemStack(PYRO_SLIME_EGG.get()))
+                    .displayItems((params, output) -> {
+                        output.accept(PYRO_SLIME_EGG.get());
+                        output.accept(HYDRO_SLIME_EGG.get());
+                        output.accept(ELECTRO_SLIME_EGG.get());
+                        output.accept(CRYO_SLIME_EGG.get());
+                    })
+                    .build());
+
     /** 提瓦特·法杖（元素测试工具） */
-    public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> TEYVAT_TAB =
-            CREATIVE_TABS.register("main", () -> CreativeModeTab.builder()
+    public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> TEYVAT_TAB =            CREATIVE_TABS.register("main", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.teyvat_elements"))
                     .icon(() -> new ItemStack(PYRO_WAND.get()))
                     .displayItems((params, output) -> {

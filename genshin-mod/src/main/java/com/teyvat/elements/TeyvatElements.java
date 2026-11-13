@@ -9,6 +9,7 @@ import com.teyvat.elements.network.ModNetworking;
 import com.teyvat.elements.reaction.ReactionRegistry;
 import com.teyvat.elements.registry.ModItems;
 
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
@@ -28,6 +29,20 @@ public class TeyvatElements {
         com.teyvat.elements.registry.ModBlocks.BLOCKS.register(modEventBus);
         com.teyvat.elements.registry.ModMenus.MENUS.register(modEventBus);
         ModNetworking.register(modEventBus);
+
+        // 元素史莱姆属性注册
+        modEventBus.addListener(net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent.class,
+                event -> {
+                    var attributes = net.minecraft.world.entity.Mob.createMobAttributes()
+                            .add(Attributes.MAX_HEALTH, 20.0)
+                            .add(Attributes.MOVEMENT_SPEED, 0.25)
+                            .add(Attributes.ATTACK_DAMAGE, 3.0)
+                            .build();
+                    event.put(com.teyvat.elements.registry.ModEntities.PYRO_SLIME.get(), attributes);
+                    event.put(com.teyvat.elements.registry.ModEntities.HYDRO_SLIME.get(), attributes);
+                    event.put(com.teyvat.elements.registry.ModEntities.ELECTRO_SLIME.get(), attributes);
+                    event.put(com.teyvat.elements.registry.ModEntities.CRYO_SLIME.get(), attributes);
+                });
 
         // 把自定义属性挂到所有生物上（物抗/精通/暴击率）
         modEventBus.addListener(net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent.class,

@@ -117,5 +117,14 @@
   "item.teyvat_elements.skyward_harp.usage": "左键：物理攻击（冻结目标跳劈可碎冰）。潜行+右键：刻印界面",
   "item.teyvat_elements.homa_staff.usage": "左键：火元素命中（1.5量强附着）。右键：火环（范围火附着，5秒冷却）。被动：生命低于50%时攻击+50%。潜行+右键：刻印界面",
   "item.teyvat_elements.vortex_vanquisher.usage": "左键：岩元素命中（触发结晶）。右键：生成1×2岩造物（6秒冷却）。站在岩造物旁每秒回复护盾。潜行+右键：刻印界面",
-  "gui.teyvat_elements.weapon_imprint": "武器刻印"
+  "gui.teyvat_elements.weapon_imprint": "武器刻印",
+  "itemGroup.teyvat_elements.monsters": "提瓦特·怪物",
+  "entity.teyvat_elements.pyro_slime": "火史莱姆",
+  "item.teyvat_elements.pyro_slime_spawn_egg": "火史莱姆刷怪蛋",
+  "entity.teyvat_elements.hydro_slime": "水史莱姆",
+  "item.teyvat_elements.hydro_slime_spawn_egg": "水史莱姆刷怪蛋",
+  "entity.teyvat_elements.electro_slime": "雷史莱姆",
+  "item.teyvat_elements.electro_slime_spawn_egg": "雷史莱姆刷怪蛋",
+  "entity.teyvat_elements.cryo_slime": "冰史莱姆",
+  "item.teyvat_elements.cryo_slime_spawn_egg": "冰史莱姆刷怪蛋"
 }

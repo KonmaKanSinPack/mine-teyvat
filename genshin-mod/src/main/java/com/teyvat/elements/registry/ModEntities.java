@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import com.teyvat.elements.TeyvatElements;
 import com.teyvat.elements.entity.DendroCoreEntity;
+import com.teyvat.elements.entity.ElementalSlimeEntity;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
@@ -38,4 +39,18 @@ public final class ModEntities {
                     .build("teyvat_elements:genshin_arrow"));
 
     private ModEntities() {}
+
+    /** 注册元素史莱姆（实体类型决定元素，继承原版史莱姆 AI） */
+    private static Supplier<EntityType<ElementalSlimeEntity>> registerSlime(String name) {
+        return ENTITY_TYPES.register(name, () -> EntityType.Builder
+                .<ElementalSlimeEntity>of(ElementalSlimeEntity::new, MobCategory.MONSTER)
+                .sized(2.04f, 2.04f)
+                .clientTrackingRange(10)
+                .build("teyvat_elements:" + name));
+    }
+
+    public static final Supplier<EntityType<ElementalSlimeEntity>> PYRO_SLIME = registerSlime("pyro_slime");
+    public static final Supplier<EntityType<ElementalSlimeEntity>> HYDRO_SLIME = registerSlime("hydro_slime");
+    public static final Supplier<EntityType<ElementalSlimeEntity>> ELECTRO_SLIME = registerSlime("electro_slime");
+    public static final Supplier<EntityType<ElementalSlimeEntity>> CRYO_SLIME = registerSlime("cryo_slime");
 }

@@ -47,6 +47,27 @@ public final class ClientEvents {
                     event.registerEntityRenderer(
                             com.teyvat.elements.registry.ModEntities.GENSHIN_ARROW.get(),
                             GenshinArrowRenderer::new);
+                    // 元素史莱姆渲染器（原版模型 + 元素配色）
+                    event.registerEntityRenderer(
+                            com.teyvat.elements.registry.ModEntities.PYRO_SLIME.get(),
+                            ctx -> new ElementalSlimeRenderer(ctx,
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            TeyvatElements.MOD_ID, "textures/entity/pyro_slime.png")));
+                    event.registerEntityRenderer(
+                            com.teyvat.elements.registry.ModEntities.HYDRO_SLIME.get(),
+                            ctx -> new ElementalSlimeRenderer(ctx,
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            TeyvatElements.MOD_ID, "textures/entity/hydro_slime.png")));
+                    event.registerEntityRenderer(
+                            com.teyvat.elements.registry.ModEntities.ELECTRO_SLIME.get(),
+                            ctx -> new ElementalSlimeRenderer(ctx,
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            TeyvatElements.MOD_ID, "textures/entity/electro_slime.png")));
+                    event.registerEntityRenderer(
+                            com.teyvat.elements.registry.ModEntities.CRYO_SLIME.get(),
+                            ctx -> new ElementalSlimeRenderer(ctx,
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            TeyvatElements.MOD_ID, "textures/entity/cryo_slime.png")));
                 });
         // 刻印界面注册
         modEventBus.addListener(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent.class,
