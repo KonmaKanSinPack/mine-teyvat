@@ -175,7 +175,51 @@ public final class ModItems {
         }
     }
 
-    public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> TEYVAT_TAB =            CREATIVE_TABS.register("main", () -> CreativeModeTab.builder()
+    // ---- 创造模式页签：按类别拆分，避免 30+ 物品挤一页 ----
+
+    /** 提瓦特·武器（护摩 + 17 把原神武器） */
+    public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> WEAPONS_TAB =
+            CREATIVE_TABS.register("weapons", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.teyvat_elements.weapons"))
+                    .icon(() -> new ItemStack(HOMA_STAFF.get()))
+                    .displayItems((params, output) -> {
+                        output.accept(HOMA_STAFF.get());
+                        GENSHIN_WEAPONS.forEach(output::accept);
+                    })
+                    .build());
+
+    /** 提瓦特·材料（突破石/精锻矿/魔晶矿/结晶片） */
+    public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> MATERIALS_TAB =
+            CREATIVE_TABS.register("materials", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.teyvat_elements.materials"))
+                    .icon(() -> new ItemStack(ENHANCEMENT_ORE_MYSTIC.get()))
+                    .displayItems((params, output) -> {
+                        output.accept(ASCENSION_STONE.get());
+                        output.accept(ENHANCEMENT_ORE.get());
+                        output.accept(ENHANCEMENT_ORE_FINE.get());
+                        output.accept(ENHANCEMENT_ORE_MYSTIC.get());
+                        output.accept(MAGIC_CRYSTAL_ORE_ITEM.get());
+                        output.accept(CRYSTAL_SHARD.get());
+                    })
+                    .build());
+
+    /** 提瓦特·刻印 */
+    public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> IMPRINTS_TAB =
+            CREATIVE_TABS.register("imprints", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.teyvat_elements.imprints"))
+                    .icon(() -> new ItemStack(IMPRINT_CIRCLET.get()))
+                    .displayItems((params, output) -> {
+                        output.accept(IMPRINT_FLOWER.get());
+                        output.accept(IMPRINT_PLUME.get());
+                        output.accept(IMPRINT_SANDS.get());
+                        output.accept(IMPRINT_GOBLET.get());
+                        output.accept(IMPRINT_CIRCLET.get());
+                    })
+                    .build());
+
+    /** 提瓦特·法杖（元素测试工具） */
+    public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> TEYVAT_TAB =
+            CREATIVE_TABS.register("main", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.teyvat_elements"))
                     .icon(() -> new ItemStack(PYRO_WAND.get()))
                     .displayItems((params, output) -> {
@@ -186,19 +230,6 @@ public final class ModItems {
                         output.accept(ANEMO_WAND.get());
                         output.accept(DENDRO_WAND.get());
                         output.accept(GEO_WAND.get());
-                        output.accept(CRYSTAL_SHARD.get());
-                        output.accept(ASCENSION_STONE.get());
-                        output.accept(ENHANCEMENT_ORE.get());
-                        output.accept(ENHANCEMENT_ORE_FINE.get());
-                        output.accept(ENHANCEMENT_ORE_MYSTIC.get());
-                        output.accept(MAGIC_CRYSTAL_ORE_ITEM.get());
-                        output.accept(HOMA_STAFF.get());
-                        output.accept(IMPRINT_FLOWER.get());
-                        output.accept(IMPRINT_PLUME.get());
-                        output.accept(IMPRINT_SANDS.get());
-                        output.accept(IMPRINT_GOBLET.get());
-                        output.accept(IMPRINT_CIRCLET.get());
-                        GENSHIN_WEAPONS.forEach(output::accept);
                     })
                     .build());
 

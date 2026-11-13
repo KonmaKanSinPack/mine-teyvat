@@ -1,5 +1,5 @@
 {
-  "itemGroup.teyvat_elements": "提瓦特元素",
+  "itemGroup.teyvat_elements": "提瓦特·法杖（測試）",
   "item.teyvat_elements.pyro_wand": "元素法杖·火",
   "item.teyvat_elements.hydro_wand": "元素法杖·水",
   "item.teyvat_elements.electro_wand": "元素法杖·雷",
@@ -93,5 +93,8 @@
   "item.teyvat_elements.apprentices_notes": "學徒筆記",
   "item.teyvat_elements.skyward_atlas": "天空之卷",
   "item.teyvat_elements.hunters_bow": "獵弓",
-  "item.teyvat_elements.skyward_harp": "天空之翼"
+  "item.teyvat_elements.skyward_harp": "天空之翼",
+  "itemGroup.teyvat_elements.weapons": "提瓦特·武器",
+  "itemGroup.teyvat_elements.materials": "提瓦特·材料",
+  "itemGroup.teyvat_elements.imprints": "提瓦特·刻印"
 }

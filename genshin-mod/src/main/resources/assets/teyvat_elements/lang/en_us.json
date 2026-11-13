@@ -1,5 +1,5 @@
 {
-  "itemGroup.teyvat_elements": "Teyvat Elements",
+  "itemGroup.teyvat_elements": "Teyvat Wands (Test)",
   "item.teyvat_elements.pyro_wand": "Pyro Wand",
   "item.teyvat_elements.hydro_wand": "Hydro Wand",
   "item.teyvat_elements.electro_wand": "Electro Wand",
@@ -93,5 +93,8 @@
   "item.teyvat_elements.apprentices_notes": "Apprentice's Notes",
   "item.teyvat_elements.skyward_atlas": "Skyward Atlas",
   "item.teyvat_elements.hunters_bow": "Hunter's Bow",
-  "item.teyvat_elements.skyward_harp": "Skyward Harp"
+  "item.teyvat_elements.skyward_harp": "Skyward Harp",
+  "itemGroup.teyvat_elements.weapons": "Teyvat Weapons",
+  "itemGroup.teyvat_elements.materials": "Teyvat Materials",
+  "itemGroup.teyvat_elements.imprints": "Teyvat Imprints"
 }
