@@ -11,6 +11,7 @@ import com.teyvat.elements.reaction.ElementalReaction;
 import com.teyvat.elements.reaction.ReactionRegistry;
 
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -118,10 +119,34 @@ public final class ElementSystem {
             }
         }
         target.setData(ModAttachments.ELEMENTAL_DATA, data);
+        // 冰元素碰到水 → 周围水方块结冰（环境交互）
+        if (element == Element.CRYO && target.isInWater()) {
+            freezeWaterAround(target);
+        }
         // 附着状态可能已变化（新增/刷新/反应消耗），推给追踪者刷新头顶图标
         ModNetworking.syncAura(target);
         // 冻结定身随 FREEZE 附着存续
         FreezeController.update(target, data.getAura(Element.FREEZE) != null);
+    }
+
+    /** 冰附着碰到水：把目标周围 2 格内的水方块替换为冰块 */
+    private static void freezeWaterAround(LivingEntity target) {
+        if (!(target.level() instanceof net.minecraft.server.level.ServerLevel level)) return;
+        BlockPos center = target.blockPosition();
+        int frozen = 0;
+        for (BlockPos pos : BlockPos.withinManhattan(center, 2, 1, 2)) {
+            if (level.getBlockState(pos).getBlock() == net.minecraft.world.level.block.Blocks.WATER) {
+                level.setBlock(pos, net.minecraft.world.level.block.Blocks.ICE.defaultBlockState(), 3);
+                frozen++;
+            }
+        }
+        if (frozen > 0) {
+            level.playSound(null, center, net.minecraft.sounds.SoundEvents.GLASS_PLACE,
+                    net.minecraft.sounds.SoundSource.BLOCKS, 0.8f, 1.2f);
+            level.sendParticles(net.minecraft.core.particles.ParticleTypes.SNOWFLAKE,
+                    center.getX() + 0.5, center.getY() + 0.5, center.getZ() + 0.5,
+                    16, 1.5, 0.5, 1.5, 0.05);
+        }
     }
 
     /** 雷击 → 雷附着（环境附着之一，走正常管线，雨天的感电连招由此成立） */
