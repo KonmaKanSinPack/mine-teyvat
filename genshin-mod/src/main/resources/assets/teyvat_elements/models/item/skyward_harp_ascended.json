@@ -3,6 +3,7 @@
   "parent": "teyvat_elements:custom/skyward_harp_ascended",
   "textures": {
     "0": "teyvat_elements:item/skyward_harp_ascended",
+    "1": "teyvat_elements:item/skyward_harp_ascended_emissive",
     "particle": "teyvat_elements:item/skyward_harp_ascended"
   }
 }
