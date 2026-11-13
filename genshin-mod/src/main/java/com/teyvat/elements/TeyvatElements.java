@@ -29,6 +29,15 @@ public class TeyvatElements {
         com.teyvat.elements.registry.ModMenus.MENUS.register(modEventBus);
         ModNetworking.register(modEventBus);
 
+        // 武器同时进原版「战斗用品」页签（用户习惯在原版战斗页签找武器）
+        modEventBus.addListener(net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent.class,
+                event -> {
+                    if (event.getTabKey() == net.minecraft.world.item.CreativeModeTabs.COMBAT) {
+                        event.accept(ModItems.HOMA_STAFF.get());
+                        ModItems.GENSHIN_WEAPONS.forEach(event::accept);
+                    }
+                });
+
         // 把自定义属性挂到所有生物上（物抗/精通/暴击率）
         modEventBus.addListener(net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent.class,
                 event -> event.getTypes().forEach(type -> {
