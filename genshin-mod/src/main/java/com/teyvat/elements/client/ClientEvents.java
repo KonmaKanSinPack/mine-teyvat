@@ -39,9 +39,15 @@ public final class ClientEvents {
         modEventBus.addListener(EntityRenderersEvent.AddLayers.class, ClientEvents::onAddLayers);
         // 草原核渲染器注册
         modEventBus.addListener(EntityRenderersEvent.RegisterRenderers.class,
-                event -> event.registerEntityRenderer(
-                        com.teyvat.elements.registry.ModEntities.DENDRO_CORE.get(),
-                        DendroCoreRenderer::new));
+                event -> {
+                    event.registerEntityRenderer(
+                            com.teyvat.elements.registry.ModEntities.DENDRO_CORE.get(),
+                            DendroCoreRenderer::new);
+                    // 原神箭矢渲染器（复用原版箭矢渲染器）
+                    event.registerEntityRenderer(
+                            com.teyvat.elements.registry.ModEntities.GENSHIN_ARROW.get(),
+                            net.minecraft.client.renderer.entity.ArrowRenderer::new);
+                });
         // 刻印界面注册
         modEventBus.addListener(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent.class,
                 event -> event.register(com.teyvat.elements.registry.ModMenus.WEAPON_IMPRINT.get(),

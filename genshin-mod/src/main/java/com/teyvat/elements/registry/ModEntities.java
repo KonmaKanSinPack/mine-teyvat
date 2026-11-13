@@ -26,5 +26,16 @@ public final class ModEntities {
                     .noSave()
                     .build("teyvat_elements:dendro_core"));
 
+    /** 原神箭矢：弓放出的箭（命中可施加元素） */
+    public static final Supplier<EntityType<com.teyvat.elements.entity.GenshinArrowEntity>> GENSHIN_ARROW =
+            ENTITY_TYPES.register("genshin_arrow", () -> EntityType.Builder
+                    .<com.teyvat.elements.entity.GenshinArrowEntity>of(
+                            com.teyvat.elements.entity.GenshinArrowEntity::new, MobCategory.MISC)
+                    .sized(0.5f, 0.5f)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+                    .noSave()
+                    .build("teyvat_elements:genshin_arrow"));
+
     private ModEntities() {}
 }

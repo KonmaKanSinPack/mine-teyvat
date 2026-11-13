@@ -5,6 +5,7 @@ import com.teyvat.elements.TeyvatElements;
 import com.teyvat.elements.element.Element;
 import com.teyvat.elements.item.CrystalShardItem;
 import com.teyvat.elements.item.ElementWandItem;
+import com.teyvat.elements.item.GenshinBowItem;
 import com.teyvat.elements.item.GenshinWeaponItem;
 import com.teyvat.elements.item.HomaStaffItem;
 import com.teyvat.elements.item.ImprintItem;
@@ -177,6 +178,10 @@ public final class ModItems {
             if (spec.id.equals("vortex_vanquisher")) {
                 GENSHIN_WEAPONS.add(ITEMS.register(spec.id,
                         () -> new VortexVanquisherItem(weaponProps(spec))));
+            } else if (spec.id.equals("hunters_bow") || spec.id.equals("skyward_harp")) {
+                // 弓走拉弓管线（右键开弓，松开放箭）
+                GENSHIN_WEAPONS.add(ITEMS.register(spec.id,
+                        () -> new GenshinBowItem(spec.element, spec.gauge, weaponProps(spec))));
             } else {
                 DeferredItem<GenshinWeaponItem> item = ITEMS.register(spec.id,
                         () -> new GenshinWeaponItem(spec.element, spec.gauge, weaponProps(spec)));
