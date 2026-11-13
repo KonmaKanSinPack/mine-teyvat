@@ -65,8 +65,10 @@ public class GenshinWeaponItem extends ElementWandItem {
         tooltip.add(Component.translatable("item.teyvat_elements.homa_staff.level",
                         data.level(), data.maxLevel(), data.ascension())
                 .withStyle(ChatFormatting.GOLD));
-        tooltip.add(Component.translatable("item.teyvat_elements.homa_staff.skill")
-                .withStyle(ChatFormatting.DARK_GRAY));
+        // 玩法说明：每把武器一条 usage 文本（键位/战技/被动都写在这里）
+        String path = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(stack.getItem()).getPath();
+        tooltip.add(Component.translatable("item.teyvat_elements." + path + ".usage")
+                .withStyle(ChatFormatting.GRAY));
     }
 
     @Override
