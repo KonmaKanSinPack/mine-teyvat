@@ -46,7 +46,7 @@ public final class ClientEvents {
                     // 原神箭矢渲染器（复用原版箭矢渲染器）
                     event.registerEntityRenderer(
                             com.teyvat.elements.registry.ModEntities.GENSHIN_ARROW.get(),
-                            net.minecraft.client.renderer.entity.ArrowRenderer::new);
+                            GenshinArrowRenderer::new);
                 });
         // 刻印界面注册
         modEventBus.addListener(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent.class,

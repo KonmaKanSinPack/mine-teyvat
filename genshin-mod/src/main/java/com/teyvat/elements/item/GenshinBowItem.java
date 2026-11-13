@@ -49,7 +49,7 @@ public class GenshinBowItem extends GenshinWeaponItem {
     }
 
     @Override
-    public int getUseDuration(ItemStack stack) {
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 72000; // 持续拉弓（原版弓同值）
     }
 
@@ -58,15 +58,16 @@ public class GenshinBowItem extends GenshinWeaponItem {
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeLeft) {
         if (level.isClientSide || !(entity instanceof Player player)) return;
 
-        int useTicks = getUseDuration(stack) - timeLeft;
+        int useTicks = getUseDuration(stack, entity) - timeLeft;
         float charge = Math.min(1.0f, (float) useTicks / FULL_CHARGE_TICKS);
         if (charge < 0.15f) return; // 拉弓不足不放箭
 
         GenshinArrowEntity arrow = new GenshinArrowEntity(player, level, element(), gauge());
         arrow.setBaseDamage(arrowDamage(stack, charge));
-        arrow.setCrit(charge >= 1.0f); // 满蓄暴击轨迹
-        arrow.shootFromRotation(player, player.getXRot(), player.getYRot(),
-                0.0f, 1.0f + charge * 2.0f, 1.0f);
+        arrow.setCritArrow(charge >= 1.0f); // 满蓄暴击轨迹
+        // 沿视线方向射出（速度随蓄力增加）
+        net.minecraft.world.phys.Vec3 look = player.getLookAngle();
+        arrow.shoot(look.x, look.y, look.z, 1.0f + charge * 2.0f, 1.0f);
         level.addFreshEntity(arrow);
 
         level.playSound(null, player.blockPosition(), SoundEvents.ARROW_SHOOT,

@@ -24,9 +24,12 @@ public class GenshinArrowEntity extends AbstractArrow {
     }
 
     public GenshinArrowEntity(LivingEntity shooter, Level level, Element element, double gauge) {
-        super(ModEntities.GENSHIN_ARROW.get(), shooter, level);
+        super(ModEntities.GENSHIN_ARROW.get(), level);
         this.element = element;
         this.gauge = gauge;
+        // 从射手眼部出箭（1.21.1 的 AbstractArrow 没有 (type, shooter, level) 构造器）
+        this.setOwner(shooter);
+        this.setPos(shooter.getX(), shooter.getEyeY() - 0.1, shooter.getZ());
     }
 
     @Override
@@ -42,7 +45,7 @@ public class GenshinArrowEntity extends AbstractArrow {
 
     /** 箭矢不可回收（防复制） */
     @Override
-    protected ItemStack getPickupItem() {
+    protected ItemStack getDefaultPickupItem() {
         return ItemStack.EMPTY;
     }
 }
