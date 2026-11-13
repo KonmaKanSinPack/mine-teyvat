@@ -32,12 +32,61 @@ public class ElementalSlimeEntity extends Slime {
         return Element.PHYSICAL;
     }
 
-    /** 攻击命中 → 给目标施加自身元素（史莱姆的攻击回调是 dealDamage） */
+    /** 攻击命中 → 给目标施加自身元素 + 家族技能 */
     @Override
     protected void dealDamage(LivingEntity target) {
         super.dealDamage(target);
-        if (element() != Element.PHYSICAL && !target.level().isClientSide) {
-            ElementSystem.applyElement(target, element(), 1.0, "mob:slime", this);
+        if (element() == Element.PHYSICAL || target.level().isClientSide) return;
+
+        ElementSystem.applyElement(target, element(), 1.0, "mob:slime", this);
+
+        switch (element()) {
+            case ELECTRO -> {
+                // 雷史莱姆电击链：主目标周围 3 格内其他生物一并挂雷
+                for (LivingEntity nearby : level().getEntitiesOfClass(LivingEntity.class,
+                        target.getBoundingBox().inflate(3.0))) {
+                    if (nearby != target) {
+                        ElementSystem.applyElement(nearby, Element.ELECTRO, 0.5, "mob:slime_chain", this);
+                    }
+                }
+            }
+            case HYDRO -> {
+                // 水史莱姆溅射：主目标周围 2.5 格内其他生物挂水
+                for (LivingEntity nearby : level().getEntitiesOfClass(LivingEntity.class,
+                        target.getBoundingBox().inflate(2.5))) {
+                    if (nearby != target) {
+                        ElementSystem.applyElement(nearby, Element.HYDRO, 0.5, "mob:slime_splash", this);
+                    }
+                }
+            }
+            case CRYO -> {
+                // 冰史莱姆命中附带 2 秒缓慢
+                target.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                        net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 40, 0));
+            }
+            default -> {}
+        }
+    }
+
+    /** 火史莱姆死亡自爆：半径 3 格火伤 + 挂火附着 */
+    @Override
+    public void die(net.minecraft.world.damagesource.DamageSource source) {
+        super.die(source);
+        if (element() == Element.PYRO && !level().isClientSide) {
+            for (LivingEntity nearby : level().getEntitiesOfClass(LivingEntity.class,
+                    getBoundingBox().inflate(3.0))) {
+                nearby.hurt(damageSources().magic(), 4.0f);
+                ElementSystem.applyElement(nearby, Element.PYRO, 0.5, "mob:slime_explode", this);
+            }
+            if (level() instanceof net.minecraft.server.level.ServerLevel level) {
+                level.sendParticles(net.minecraft.core.particles.ParticleTypes.EXPLOSION,
+                        getX(), getY() + 0.5, getZ(), 2, 0.3, 0.3, 0.3, 0.0);
+                level.sendParticles(net.minecraft.core.particles.ParticleTypes.FLAME,
+                        getX(), getY() + 0.5, getZ(), 30, 1.0, 0.6, 1.0, 0.08);
+                level.playSound(null, blockPosition(),
+                        net.minecraft.sounds.SoundEvents.GENERIC_EXPLODE.value(),
+                        net.minecraft.sounds.SoundSource.HOSTILE, 0.6f, 1.3f);
+            }
         }
     }
 
