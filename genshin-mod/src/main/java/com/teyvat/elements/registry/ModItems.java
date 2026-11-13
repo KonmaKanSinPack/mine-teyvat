@@ -124,21 +124,21 @@ public final class ModItems {
                               double damage, double speedMod, double reach) {}
 
     private static final java.util.List<WeaponSpec> WEAPON_SPECS = java.util.List.of(
-            // 单手剑：伤害 / 攻速 1.6 / 距离 0
-            new WeaponSpec("dull_blade", Element.PHYSICAL, 0, 2.0, -2.4, 0),
-            new WeaponSpec("silver_sword", Element.PHYSICAL, 0, 3.0, -2.4, 0),
-            new WeaponSpec("prototype_rancour", Element.PHYSICAL, 0, 6.0, -2.4, 0),
-            new WeaponSpec("festering_desire", Element.PHYSICAL, 0, 6.0, -2.4, 0),
-            // 双手剑：高伤 / 攻速 1.0
-            new WeaponSpec("waster_greatsword", Element.PHYSICAL, 0, 3.0, -3.0, 0),
-            new WeaponSpec("old_mercs_pal", Element.PHYSICAL, 0, 5.0, -3.0, 0),
-            new WeaponSpec("serpent_spine", Element.PHYSICAL, 0, 8.0, -3.0, 0),
-            // 长柄：攻速 1.2 / 距离 +0.5（贯虹 +1）
-            new WeaponSpec("iron_point", Element.PHYSICAL, 0, 3.0, -2.8, 0.5),
-            new WeaponSpec("beginners_protector", Element.PHYSICAL, 0, 4.0, -2.8, 0.5),
-            new WeaponSpec("blackcliff_pole", Element.PHYSICAL, 0, 6.0, -2.8, 0.5),
-            new WeaponSpec("kitain_cross_spear", Element.PHYSICAL, 0, 6.0, -2.8, 0.5),
-            new WeaponSpec("vortex_vanquisher", Element.GEO, 1.0, 9.0, -2.8, 1.0),
+            // 单手剑：低伤高攻速（攻速 2.0）
+            new WeaponSpec("dull_blade", Element.PHYSICAL, 0, 1.0, -2.0, 0),
+            new WeaponSpec("silver_sword", Element.PHYSICAL, 0, 2.0, -2.0, 0),
+            new WeaponSpec("prototype_rancour", Element.PHYSICAL, 0, 4.0, -2.0, 0),
+            new WeaponSpec("festering_desire", Element.PHYSICAL, 0, 4.0, -2.0, 0),
+            // 双手剑：高伤慢攻速（攻速 0.6，明显沉重）
+            new WeaponSpec("waster_greatsword", Element.PHYSICAL, 0, 5.0, -3.4, 0),
+            new WeaponSpec("old_mercs_pal", Element.PHYSICAL, 0, 8.0, -3.4, 0),
+            new WeaponSpec("serpent_spine", Element.PHYSICAL, 0, 12.0, -3.4, 0),
+            // 长柄：介于二者之间（攻速 1.2，距离 +0.5~1）
+            new WeaponSpec("iron_point", Element.PHYSICAL, 0, 4.0, -2.8, 0.5),
+            new WeaponSpec("beginners_protector", Element.PHYSICAL, 0, 5.0, -2.8, 0.5),
+            new WeaponSpec("blackcliff_pole", Element.PHYSICAL, 0, 7.0, -2.8, 0.5),
+            new WeaponSpec("kitain_cross_spear", Element.PHYSICAL, 0, 7.0, -2.8, 0.5),
+            new WeaponSpec("vortex_vanquisher", Element.GEO, 1.0, 10.0, -2.8, 1.0),
             // 法器：低面板，攻速 1.6
             new WeaponSpec("pocket_grimoire", Element.PHYSICAL, 0, 1.0, -2.4, 0),
             new WeaponSpec("apprentices_notes", Element.PHYSICAL, 0, 2.0, -2.4, 0),
