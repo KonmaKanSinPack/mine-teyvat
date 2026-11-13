@@ -3,15 +3,15 @@ package com.teyvat.elements.element;
 /**
  * 附着冷却（Internal Cooldown, ICD）的简化实现。
  *
- * <p>原神规则：同一攻击来源的元素附着受"3 次命中 / 2.5 秒"限制——
- * 一个窗口期内第 1 次命中施加元素，第 2、3 次被冷却吞掉，第 4 次（或 2.5 秒后）
- * 才能再次施加。骨架阶段按"来源标签"分组：同一把武器/技能连续命中共享一个窗口。</p>
+ * <p>窗口取 0.6 秒（对齐原版剑的有效挥剑间隔，用户决策），窗口内沿用
+ * "3 次命中"计数：第 1 次命中施加元素，第 2、3 次被冷却吞掉，第 4 次
+ * （或窗口结束）再次施加。</p>
  *
  * <p>后续可升级为标准的 (tag, hit-count, duration) 三元组计数型 ICD。</p>
  */
 public final class InternalCooldown {
-    /** 窗口长度：2.5 秒 × 20 tick */
-    public static final int WINDOW_TICKS = 50;
+    /** 窗口长度：0.6 秒（12 tick），对齐原版剑的有效挥剑间隔 */
+    public static final int WINDOW_TICKS = 12;
     /** 每个窗口内最多吞掉的命中数（第 1 次施加，第 2、3 次冷却） */
     public static final int HITS_PER_WINDOW = 3;
 
