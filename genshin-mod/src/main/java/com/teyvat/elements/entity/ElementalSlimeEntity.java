@@ -53,8 +53,22 @@ public class ElementalSlimeEntity extends Slime {
     @Override
     public void tick() {
         super.tick();
-        if (!level().isClientSide && element() == Element.CRYO
-                && isInWater() && tickCount % 20 == 0) {
+        if (level().isClientSide) return;
+
+        // 常驻自身元素附着：图标与环绕粒子常驻显示
+        // 不走 applyElement——史莱姆对自身元素免疫，附着由数据层直接维护（每 20 tick 检查一次）
+        if (element() != Element.PHYSICAL && tickCount % 20 == 0) {
+            com.teyvat.elements.data.ElementalData data =
+                    this.getData(com.teyvat.elements.data.ModAttachments.ELEMENTAL_DATA);
+            if (data.getAura(element()) == null) {
+                data.applyAura(element(), 1.0, "mob:self");
+                this.setData(com.teyvat.elements.data.ModAttachments.ELEMENTAL_DATA, data);
+                com.teyvat.elements.network.ModNetworking.syncAura(this);
+            }
+        }
+
+        // 冰史莱姆本体在水中时，周期性把周围水方块冻成冰
+        if (element() == Element.CRYO && isInWater() && tickCount % 20 == 0) {
             ElementSystem.freezeWaterAround(this);
         }
     }
