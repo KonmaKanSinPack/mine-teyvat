@@ -123,18 +123,16 @@ public final class ElementSystem {
         if (element == Element.CRYO && target.isInWater()) {
             freezeWaterAround(target);
         }
-        // 火元素 → 点燃目标脚下的地面（环境交互）
-        if (element == Element.PYRO) {
-            igniteGroundAround(target);
-        }
+        // 注意：点燃地面是燃烧反应的产物（BurningReaction），不是挂火就点
         // 附着状态可能已变化（新增/刷新/反应消耗），推给追踪者刷新头顶图标
         ModNetworking.syncAura(target);
         // 冻结定身随 FREEZE 附着存续
         FreezeController.update(target, data.getAura(Element.FREEZE) != null);
     }
 
-    /** 火附着：点燃目标脚下 2 格内的地面（空气下方为实心面则生成火焰） */
-    private static void igniteGroundAround(LivingEntity target) {
+    /** 火附着：点燃目标脚下 2 格内的地面（空气下方为实心面则生成火焰）。
+     *  仅供燃烧反应调用（BurningReaction.onReact）。 */
+    public static void igniteGroundAround(LivingEntity target) {
         if (!(target.level() instanceof net.minecraft.server.level.ServerLevel level)) return;
         BlockPos center = target.blockPosition();
         int lit = 0;

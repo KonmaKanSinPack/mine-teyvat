@@ -39,6 +39,9 @@ public class BurningReaction extends ElementalReaction {
         data.applyAura(Element.BURNING, reducedGauge, "reaction:burning");
         target.setData(ModAttachments.ELEMENTAL_DATA, data);
 
+        // 燃烧反应点燃目标脚下的地面（这是反应产物，不是挂火就有）
+        com.teyvat.elements.logic.ElementSystem.igniteGroundAround(target);
+
         if (target.level() instanceof ServerLevel level) {
             level.sendParticles(ParticleTypes.FLAME,
                     target.getX(), target.getY() + target.getBbHeight() * 0.5, target.getZ(),
