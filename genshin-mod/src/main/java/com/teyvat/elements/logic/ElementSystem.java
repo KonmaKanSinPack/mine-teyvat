@@ -123,10 +123,33 @@ public final class ElementSystem {
         if (element == Element.CRYO && target.isInWater()) {
             freezeWaterAround(target);
         }
+        // 火元素 → 点燃目标脚下的地面（环境交互）
+        if (element == Element.PYRO) {
+            igniteGroundAround(target);
+        }
         // 附着状态可能已变化（新增/刷新/反应消耗），推给追踪者刷新头顶图标
         ModNetworking.syncAura(target);
         // 冻结定身随 FREEZE 附着存续
         FreezeController.update(target, data.getAura(Element.FREEZE) != null);
+    }
+
+    /** 火附着：点燃目标脚下 2 格内的地面（空气下方为实心面则生成火焰） */
+    private static void igniteGroundAround(LivingEntity target) {
+        if (!(target.level() instanceof net.minecraft.server.level.ServerLevel level)) return;
+        BlockPos center = target.blockPosition();
+        int lit = 0;
+        for (BlockPos pos : BlockPos.withinManhattan(center, 2, 1, 2)) {
+            if (!level.getBlockState(pos).isAir()) continue;
+            // 下方是实心面才能站住火（等价打火石逻辑）
+            if (level.getBlockState(pos.below()).isSolidRender(level, pos.below())) {
+                level.setBlock(pos, net.minecraft.world.level.block.Blocks.FIRE.defaultBlockState(), 3);
+                lit++;
+            }
+        }
+        if (lit > 0) {
+            level.playSound(null, center, net.minecraft.sounds.SoundEvents.FIRECHARGE_USE,
+                    net.minecraft.sounds.SoundSource.PLAYERS, 0.8f, 1.0f);
+        }
     }
 
     /** 冰附着碰到水：把目标周围 2 格内的水方块替换为冰块 */
