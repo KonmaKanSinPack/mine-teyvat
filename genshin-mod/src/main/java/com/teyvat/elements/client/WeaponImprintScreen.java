@@ -1,7 +1,6 @@
 package com.teyvat.elements.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.teyvat.elements.TeyvatElements;
 import com.teyvat.elements.menu.WeaponImprintMenu;
 
 import net.minecraft.client.gui.GuiGraphics;
@@ -11,14 +10,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 /**
- * 刻印镶嵌界面：上方 5 个刻印槽，下方玩家背包（贴图由脚本生成）。
+ * 刻印镶嵌界面：复用原版漏斗 GUI 贴图（一排 5 槽正好配五刻印）。
  */
 public class WeaponImprintScreen extends AbstractContainerScreen<WeaponImprintMenu> {
+    /** 原版漏斗 GUI：176x133，槽位 y=20，背包 y=51/109 */
     private static final ResourceLocation TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(TeyvatElements.MOD_ID, "textures/gui/weapon_imprint.png");
+            ResourceLocation.withDefaultNamespace("textures/gui/container/hopper.png");
 
     public WeaponImprintScreen(WeaponImprintMenu menu, Inventory playerInv, Component title) {
         super(menu, playerInv, title);
+        this.imageHeight = 133;
     }
 
     @Override

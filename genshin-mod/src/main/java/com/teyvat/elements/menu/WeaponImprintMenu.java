@@ -51,18 +51,18 @@ public class WeaponImprintMenu extends AbstractContainerMenu {
             imprints.setStackInSlot(i, stored.get(i));
         }
 
-        // 刻印槽：界面上部一排
+        // 刻印槽：漏斗布局（一排 5 槽，x=44+18i，y=20）
         for (int i = 0; i < SLOT_COUNT; i++) {
-            addSlot(new SlotItemHandler(imprints, i, 35 + i * 18, 32));
+            addSlot(new SlotItemHandler(imprints, i, 44 + i * 18, 20));
         }
-        // 玩家背包 + 快捷栏（标准位置）
+        // 玩家背包 + 快捷栏（漏斗标准位置）
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
-                addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 84 + row * 18));
+                addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 51 + row * 18));
             }
         }
         for (int col = 0; col < 9; col++) {
-            addSlot(new Slot(playerInv, col, 8 + col * 18, 142));
+            addSlot(new Slot(playerInv, col, 8 + col * 18, 109));
         }
     }
 

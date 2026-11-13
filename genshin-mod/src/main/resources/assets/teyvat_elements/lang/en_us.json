@@ -116,5 +116,6 @@
   "item.teyvat_elements.hunters_bow.usage": "LMB: physical attack (shatter frozen targets with jump crits). Shift+RMB: imprints",
   "item.teyvat_elements.skyward_harp.usage": "LMB: physical attack (shatter frozen targets with jump crits). Shift+RMB: imprints",
   "item.teyvat_elements.homa_staff.usage": "LMB: pyro hits (1.5U strong aura). RMB: flame ring AoE (5s CD). Passive: +50% ATK below 50% HP. Shift+RMB: imprints",
-  "item.teyvat_elements.vortex_vanquisher.usage": "LMB: geo hits (crystallize). RMB: summon a 1x2 geo pillar (6s CD). Stand near pillars to regen shields. Shift+RMB: imprints"
+  "item.teyvat_elements.vortex_vanquisher.usage": "LMB: geo hits (crystallize). RMB: summon a 1x2 geo pillar (6s CD). Stand near pillars to regen shields. Shift+RMB: imprints",
+  "gui.teyvat_elements.weapon_imprint": "Weapon Imprints"
 }

@@ -51,7 +51,7 @@ public class GenshinWeaponItem extends ElementWandItem {
                 && !level.isClientSide) {
             player.openMenu(new SimpleMenuProvider(
                     (id, inv, p) -> new com.teyvat.elements.menu.WeaponImprintMenu(id, inv),
-                    stack.getHoverName()));
+                    Component.translatable("gui.teyvat_elements.weapon_imprint")));
             return net.minecraft.world.InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
         }
         return net.minecraft.world.InteractionResultHolder.pass(stack);
