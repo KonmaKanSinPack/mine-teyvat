@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "teyvat_elements:block/geo_construct" }
+  }
+}

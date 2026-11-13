@@ -8,6 +8,7 @@ import com.teyvat.elements.item.ElementWandItem;
 import com.teyvat.elements.item.GenshinWeaponItem;
 import com.teyvat.elements.item.HomaStaffItem;
 import com.teyvat.elements.item.ImprintItem;
+import com.teyvat.elements.item.VortexVanquisherItem;
 import com.teyvat.elements.weapon.WeaponData;
 
 import net.minecraft.core.registries.Registries;
@@ -79,6 +80,10 @@ public final class ModItems {
     /** 魔晶矿方块物品 */
     public static final DeferredItem<BlockItem> MAGIC_CRYSTAL_ORE_ITEM = ITEMS.register("magic_crystal_ore",
             () -> new BlockItem(ModBlocks.MAGIC_CRYSTAL_ORE.get(), new Item.Properties()));
+
+    /** 岩造物方块物品 */
+    public static final DeferredItem<BlockItem> GEO_CONSTRUCT_ITEM = ITEMS.register("geo_construct",
+            () -> new BlockItem(ModBlocks.GEO_CONSTRUCT.get(), new Item.Properties()));
 
     // ---- 刻印五件套（生/死/时/空/理） ----
     public static final DeferredItem<ImprintItem> IMPRINT_FLOWER = ITEMS.register("imprint_flower",
@@ -169,9 +174,14 @@ public final class ModItems {
 
     static {
         for (WeaponSpec spec : WEAPON_SPECS) {
-            DeferredItem<GenshinWeaponItem> item = ITEMS.register(spec.id,
-                    () -> new GenshinWeaponItem(spec.element, spec.gauge, weaponProps(spec)));
-            GENSHIN_WEAPONS.add(item);
+            if (spec.id.equals("vortex_vanquisher")) {
+                GENSHIN_WEAPONS.add(ITEMS.register(spec.id,
+                        () -> new VortexVanquisherItem(weaponProps(spec))));
+            } else {
+                DeferredItem<GenshinWeaponItem> item = ITEMS.register(spec.id,
+                        () -> new GenshinWeaponItem(spec.element, spec.gauge, weaponProps(spec)));
+                GENSHIN_WEAPONS.add(item);
+            }
         }
     }
 
@@ -199,6 +209,7 @@ public final class ModItems {
                         output.accept(ENHANCEMENT_ORE_FINE.get());
                         output.accept(ENHANCEMENT_ORE_MYSTIC.get());
                         output.accept(MAGIC_CRYSTAL_ORE_ITEM.get());
+                        output.accept(GEO_CONSTRUCT_ITEM.get());
                         output.accept(CRYSTAL_SHARD.get());
                     })
                     .build());

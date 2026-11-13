@@ -26,5 +26,12 @@ public final class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)));
 
+    /** 岩造物：贯虹之槊战技生成的 1×2 柱体；可挖掘、固体、无特殊物理 */
+    public static final Supplier<Block> GEO_CONSTRUCT = BLOCKS.register("geo_construct",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(1.5F, 6.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
     private ModBlocks() {}
 }
