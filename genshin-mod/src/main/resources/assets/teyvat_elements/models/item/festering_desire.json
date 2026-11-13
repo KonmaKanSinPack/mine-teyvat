@@ -1,0 +1,16 @@
+{
+  "credit": "引自 Genshin Nature 1.5.0（ARR，仅限私人游玩）",
+  "parent": "teyvat_elements:custom/festering_desire",
+  "textures": {
+    "0": "teyvat_elements:item/festering_desire",
+    "particle": "teyvat_elements:item/festering_desire"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "teyvat_elements:ascended": 1.0
+      },
+      "model": "teyvat_elements:item/festering_desire_ascended"
+    }
+  ]
+}

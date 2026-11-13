@@ -76,5 +76,22 @@
   "reaction.teyvat_elements.crystallize_electro": "结晶！",
   "reaction.teyvat_elements.crystallize_cryo": "结晶！",
   "attribute.teyvat_elements.physical_resistance": "物理抗性",
-  "entity.teyvat_elements.dendro_core": "草原核"
+  "entity.teyvat_elements.dendro_core": "草原核",
+  "item.teyvat_elements.dull_blade": "冷刃",
+  "item.teyvat_elements.silver_sword": "银剑",
+  "item.teyvat_elements.prototype_rancour": "试作斩岩",
+  "item.teyvat_elements.festering_desire": "腐殖之剑",
+  "item.teyvat_elements.waster_greatsword": "训练大剑",
+  "item.teyvat_elements.old_mercs_pal": "铁影阔剑",
+  "item.teyvat_elements.serpent_spine": "螭骨剑",
+  "item.teyvat_elements.iron_point": "铁尖枪",
+  "item.teyvat_elements.beginners_protector": "白缨枪",
+  "item.teyvat_elements.blackcliff_pole": "黑岩长枪",
+  "item.teyvat_elements.kitain_cross_spear": "喜多院十文字枪",
+  "item.teyvat_elements.vortex_vanquisher": "贯虹之槊",
+  "item.teyvat_elements.pocket_grimoire": "口袋魔导书",
+  "item.teyvat_elements.apprentices_notes": "学徒笔记",
+  "item.teyvat_elements.skyward_atlas": "天空之卷",
+  "item.teyvat_elements.hunters_bow": "猎弓",
+  "item.teyvat_elements.skyward_harp": "天空之翼"
 }

@@ -1,0 +1,8 @@
+{
+  "credit": "引自 Genshin Nature 1.5.0（ARR，仅限私人游玩）",
+  "parent": "teyvat_elements:custom/kitain_cross_spear_ascended",
+  "textures": {
+    "0": "teyvat_elements:item/kitain_cross_spear_ascended",
+    "particle": "teyvat_elements:item/kitain_cross_spear_ascended"
+  }
+}

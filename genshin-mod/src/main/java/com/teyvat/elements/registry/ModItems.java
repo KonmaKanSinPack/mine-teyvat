@@ -5,6 +5,7 @@ import com.teyvat.elements.TeyvatElements;
 import com.teyvat.elements.element.Element;
 import com.teyvat.elements.item.CrystalShardItem;
 import com.teyvat.elements.item.ElementWandItem;
+import com.teyvat.elements.item.GenshinWeaponItem;
 import com.teyvat.elements.item.HomaStaffItem;
 import com.teyvat.elements.item.ImprintItem;
 import com.teyvat.elements.weapon.WeaponData;
@@ -113,8 +114,68 @@ public final class ModItems {
                                     EquipmentSlotGroup.MAINHAND)
                             .build())));
 
-    public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> TEYVAT_TAB =
-            CREATIVE_TABS.register("main", () -> CreativeModeTab.builder()
+    // ---- 原神武器（模型引自 Genshin Nature；养成/刻印共用 GenshinWeaponItem 基类） ----
+    private record WeaponSpec(String id, Element element, double gauge,
+                              double damage, double speedMod, double reach) {}
+
+    private static final java.util.List<WeaponSpec> WEAPON_SPECS = java.util.List.of(
+            // 单手剑：伤害 / 攻速 1.6 / 距离 0
+            new WeaponSpec("dull_blade", Element.PHYSICAL, 0, 2.0, -2.4, 0),
+            new WeaponSpec("silver_sword", Element.PHYSICAL, 0, 3.0, -2.4, 0),
+            new WeaponSpec("prototype_rancour", Element.PHYSICAL, 0, 6.0, -2.4, 0),
+            new WeaponSpec("festering_desire", Element.PHYSICAL, 0, 6.0, -2.4, 0),
+            // 双手剑：高伤 / 攻速 1.0
+            new WeaponSpec("waster_greatsword", Element.PHYSICAL, 0, 3.0, -3.0, 0),
+            new WeaponSpec("old_mercs_pal", Element.PHYSICAL, 0, 5.0, -3.0, 0),
+            new WeaponSpec("serpent_spine", Element.PHYSICAL, 0, 8.0, -3.0, 0),
+            // 长柄：攻速 1.2 / 距离 +0.5（贯虹 +1）
+            new WeaponSpec("iron_point", Element.PHYSICAL, 0, 3.0, -2.8, 0.5),
+            new WeaponSpec("beginners_protector", Element.PHYSICAL, 0, 4.0, -2.8, 0.5),
+            new WeaponSpec("blackcliff_pole", Element.PHYSICAL, 0, 6.0, -2.8, 0.5),
+            new WeaponSpec("kitain_cross_spear", Element.PHYSICAL, 0, 6.0, -2.8, 0.5),
+            new WeaponSpec("vortex_vanquisher", Element.GEO, 1.0, 9.0, -2.8, 1.0),
+            // 法器：低面板，攻速 1.6
+            new WeaponSpec("pocket_grimoire", Element.PHYSICAL, 0, 1.0, -2.4, 0),
+            new WeaponSpec("apprentices_notes", Element.PHYSICAL, 0, 2.0, -2.4, 0),
+            new WeaponSpec("skyward_atlas", Element.PHYSICAL, 0, 6.0, -2.4, 0),
+            // 弓：攻速 1.6（骨架期按近战处理，拉弓管线后续单独做）
+            new WeaponSpec("hunters_bow", Element.PHYSICAL, 0, 1.0, -2.4, 0),
+            new WeaponSpec("skyward_harp", Element.PHYSICAL, 0, 7.0, -2.4, 0)
+    );
+
+    private static Item.Properties weaponProps(WeaponSpec spec) {
+        var builder = ItemAttributeModifiers.builder()
+                .add(Attributes.ATTACK_DAMAGE,
+                        new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, spec.damage,
+                                AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.MAINHAND)
+                .add(Attributes.ATTACK_SPEED,
+                        new AttributeModifier(Item.BASE_ATTACK_SPEED_ID, spec.speedMod,
+                                AttributeModifier.Operation.ADD_VALUE),
+                        EquipmentSlotGroup.MAINHAND);
+        if (spec.reach > 0) {
+            builder.add(Attributes.ENTITY_INTERACTION_RANGE,
+                    new AttributeModifier(ResourceLocation.fromNamespaceAndPath(
+                                    TeyvatElements.MOD_ID, "weapon_reach"),
+                            spec.reach, AttributeModifier.Operation.ADD_VALUE),
+                    EquipmentSlotGroup.MAINHAND);
+        }
+        return new Item.Properties().stacksTo(1)
+                .component(ModComponents.WEAPON_DATA, WeaponData.DEFAULT)
+                .attributes(builder.build());
+    }
+
+    public static final java.util.List<DeferredItem<?>> GENSHIN_WEAPONS = new java.util.ArrayList<>();
+
+    static {
+        for (WeaponSpec spec : WEAPON_SPECS) {
+            DeferredItem<GenshinWeaponItem> item = ITEMS.register(spec.id,
+                    () -> new GenshinWeaponItem(spec.element, spec.gauge, weaponProps(spec)));
+            GENSHIN_WEAPONS.add(item);
+        }
+    }
+
+    public static final net.neoforged.neoforge.registries.DeferredHolder<CreativeModeTab, CreativeModeTab> TEYVAT_TAB =            CREATIVE_TABS.register("main", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.teyvat_elements"))
                     .icon(() -> new ItemStack(PYRO_WAND.get()))
                     .displayItems((params, output) -> {
@@ -137,6 +198,7 @@ public final class ModItems {
                         output.accept(IMPRINT_SANDS.get());
                         output.accept(IMPRINT_GOBLET.get());
                         output.accept(IMPRINT_CIRCLET.get());
+                        GENSHIN_WEAPONS.forEach(output::accept);
                     })
                     .build());
 

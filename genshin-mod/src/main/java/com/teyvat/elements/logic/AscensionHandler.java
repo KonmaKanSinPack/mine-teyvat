@@ -1,5 +1,6 @@
 package com.teyvat.elements.logic;
 
+import com.teyvat.elements.item.GenshinWeaponItem;
 import com.teyvat.elements.item.HomaStaffItem;
 import com.teyvat.elements.registry.ModComponents;
 import com.teyvat.elements.registry.ModItems;
@@ -22,7 +23,7 @@ public final class AscensionHandler {
     /** 注册在 NeoForge.EVENT_BUS */
     public static void onAnvilUpdate(AnvilUpdateEvent event) {
         ItemStack left = event.getLeft();
-        if (!(left.getItem() instanceof HomaStaffItem)) return;
+        if (!(left.getItem() instanceof GenshinWeaponItem)) return;
 
         WeaponData data = left.getOrDefault(ModComponents.WEAPON_DATA, WeaponData.DEFAULT);
 

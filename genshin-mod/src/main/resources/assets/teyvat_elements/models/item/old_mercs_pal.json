@@ -1,0 +1,16 @@
+{
+  "credit": "引自 Genshin Nature 1.5.0（ARR，仅限私人游玩）",
+  "parent": "teyvat_elements:custom/old_mercs_pal",
+  "textures": {
+    "0": "teyvat_elements:item/old_mercs_pal",
+    "particle": "teyvat_elements:item/old_mercs_pal"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "teyvat_elements:ascended": 1.0
+      },
+      "model": "teyvat_elements:item/old_mercs_pal_ascended"
+    }
+  ]
+}

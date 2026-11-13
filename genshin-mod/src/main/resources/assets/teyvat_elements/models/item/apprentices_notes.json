@@ -1,0 +1,16 @@
+{
+  "credit": "引自 Genshin Nature 1.5.0（ARR，仅限私人游玩）",
+  "parent": "teyvat_elements:custom/apprentices_notes",
+  "textures": {
+    "0": "teyvat_elements:item/apprentices_notes",
+    "particle": "teyvat_elements:item/apprentices_notes"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "teyvat_elements:ascended": 1.0
+      },
+      "model": "teyvat_elements:item/apprentices_notes_ascended"
+    }
+  ]
+}

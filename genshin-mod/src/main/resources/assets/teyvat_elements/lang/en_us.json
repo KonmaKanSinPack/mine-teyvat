@@ -76,5 +76,22 @@
   "reaction.teyvat_elements.crystallize_electro": "Crystallize!",
   "reaction.teyvat_elements.crystallize_cryo": "Crystallize!",
   "attribute.teyvat_elements.physical_resistance": "Physical RES",
-  "entity.teyvat_elements.dendro_core": "Dendro Core"
+  "entity.teyvat_elements.dendro_core": "Dendro Core",
+  "item.teyvat_elements.dull_blade": "Dull Blade",
+  "item.teyvat_elements.silver_sword": "Silver Sword",
+  "item.teyvat_elements.prototype_rancour": "Prototype Rancour",
+  "item.teyvat_elements.festering_desire": "Festering Desire",
+  "item.teyvat_elements.waster_greatsword": "Waster Greatsword",
+  "item.teyvat_elements.old_mercs_pal": "Old Merc's Pal",
+  "item.teyvat_elements.serpent_spine": "Serpent Spine",
+  "item.teyvat_elements.iron_point": "Iron Point",
+  "item.teyvat_elements.beginners_protector": "Beginner's Protector",
+  "item.teyvat_elements.blackcliff_pole": "Blackcliff Pole",
+  "item.teyvat_elements.kitain_cross_spear": "Kitain Cross Spear",
+  "item.teyvat_elements.vortex_vanquisher": "Vortex Vanquisher",
+  "item.teyvat_elements.pocket_grimoire": "Pocket Grimoire",
+  "item.teyvat_elements.apprentices_notes": "Apprentice's Notes",
+  "item.teyvat_elements.skyward_atlas": "Skyward Atlas",
+  "item.teyvat_elements.hunters_bow": "Hunter's Bow",
+  "item.teyvat_elements.skyward_harp": "Skyward Harp"
 }

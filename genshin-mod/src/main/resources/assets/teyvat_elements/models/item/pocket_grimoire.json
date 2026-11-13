@@ -1,0 +1,16 @@
+{
+  "credit": "引自 Genshin Nature 1.5.0（ARR，仅限私人游玩）",
+  "parent": "teyvat_elements:custom/pocket_grimoire",
+  "textures": {
+    "0": "teyvat_elements:item/pocket_grimoire",
+    "particle": "teyvat_elements:item/pocket_grimoire"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "teyvat_elements:ascended": 1.0
+      },
+      "model": "teyvat_elements:item/pocket_grimoire_ascended"
+    }
+  ]
+}

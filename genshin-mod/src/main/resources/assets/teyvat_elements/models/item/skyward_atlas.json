@@ -1,0 +1,16 @@
+{
+  "credit": "引自 Genshin Nature 1.5.0（ARR，仅限私人游玩）",
+  "parent": "teyvat_elements:custom/skyward_atlas",
+  "textures": {
+    "0": "teyvat_elements:item/skyward_atlas",
+    "particle": "teyvat_elements:item/skyward_atlas"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "teyvat_elements:ascended": 1.0
+      },
+      "model": "teyvat_elements:item/skyward_atlas_ascended"
+    }
+  ]
+}

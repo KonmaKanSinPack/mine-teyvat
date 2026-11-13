@@ -23,9 +23,14 @@ public final class WeaponModelProperties {
                 // 3 阶（60 级突破后）换升阶模型
                 return data != null && data.ascension() >= 3 ? 1.0f : 0.0f;
             };
-            ItemProperties.register(ModItems.HOMA_STAFF.get(),
-                    ResourceLocation.fromNamespaceAndPath(TeyvatElements.MOD_ID, "ascended"),
-                    ascended);
+            // 覆盖全部原神武器（护摩是 GenshinWeaponItem 子类，一并纳入）
+            net.minecraft.core.registries.BuiltInRegistries.ITEM.forEach(item -> {
+                if (item instanceof com.teyvat.elements.item.GenshinWeaponItem) {
+                    ItemProperties.register(item,
+                            ResourceLocation.fromNamespaceAndPath(TeyvatElements.MOD_ID, "ascended"),
+                            ascended);
+                }
+            });
         });
     }
 

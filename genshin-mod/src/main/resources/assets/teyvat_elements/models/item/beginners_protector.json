@@ -1,0 +1,16 @@
+{
+  "credit": "引自 Genshin Nature 1.5.0（ARR，仅限私人游玩）",
+  "parent": "teyvat_elements:custom/beginners_protector",
+  "textures": {
+    "0": "teyvat_elements:item/beginners_protector",
+    "particle": "teyvat_elements:item/beginners_protector"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "teyvat_elements:ascended": 1.0
+      },
+      "model": "teyvat_elements:item/beginners_protector_ascended"
+    }
+  ]
+}
