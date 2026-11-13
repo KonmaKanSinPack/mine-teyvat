@@ -32,13 +32,12 @@ public class ElementalSlimeEntity extends Slime {
         return Element.PHYSICAL;
     }
 
-    /** 攻击命中 → 给目标施加自身元素 */
+    /** 攻击命中 → 给目标施加自身元素（史莱姆的攻击回调是 dealDamage） */
     @Override
-    protected void doHurtTarget(net.minecraft.world.entity.Entity target) {
-        super.doHurtTarget(target);
-        if (element() != Element.PHYSICAL && target instanceof LivingEntity living
-                && !target.level().isClientSide) {
-            ElementSystem.applyElement(living, element(), 1.0, "mob:slime", this);
+    protected void dealDamage(LivingEntity target) {
+        super.dealDamage(target);
+        if (element() != Element.PHYSICAL && !target.level().isClientSide) {
+            ElementSystem.applyElement(target, element(), 1.0, "mob:slime", this);
         }
     }
 }
