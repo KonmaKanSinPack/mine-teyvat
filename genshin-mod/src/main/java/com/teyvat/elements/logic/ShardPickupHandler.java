@@ -51,6 +51,11 @@ public final class ShardPickupHandler {
 
         TeyvatElements.LOGGER.info("crystallize shard picked: +{} absorption (total {})",
                 String.format("%.1f", BASE_SHIELD + gauge * SHIELD_PER_GAUGE), total);
+        // 拾取反馈：动作条显示本次获得的护盾量与当前总盾量（黄心单位）
+        player.displayClientMessage(net.minecraft.network.chat.Component.translatable(
+                "shield.teyvat_elements.pickup",
+                String.format("%.1f", BASE_SHIELD + gauge * SHIELD_PER_GAUGE),
+                String.format("%.1f", total)), true);
         player.level().playSound(null, player.blockPosition(),
                 SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.6f, 1.4f);
     }

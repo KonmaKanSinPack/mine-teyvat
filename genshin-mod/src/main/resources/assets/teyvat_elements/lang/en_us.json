@@ -97,5 +97,6 @@
   "itemGroup.teyvat_elements.weapons": "Teyvat Weapons",
   "itemGroup.teyvat_elements.materials": "Teyvat Materials",
   "itemGroup.teyvat_elements.imprints": "Teyvat Imprints",
-  "block.teyvat_elements.geo_construct": "Geo Construct"
+  "block.teyvat_elements.geo_construct": "Geo Construct",
+  "shield.teyvat_elements.pickup": "Crystallize shield +%s (total %s)"
 }

@@ -97,5 +97,6 @@
   "itemGroup.teyvat_elements.weapons": "提瓦特·武器",
   "itemGroup.teyvat_elements.materials": "提瓦特·材料",
   "itemGroup.teyvat_elements.imprints": "提瓦特·刻印",
-  "block.teyvat_elements.geo_construct": "岩造物"
+  "block.teyvat_elements.geo_construct": "岩造物",
+  "shield.teyvat_elements.pickup": "结晶护盾 +%s（当前 %s）"
 }
