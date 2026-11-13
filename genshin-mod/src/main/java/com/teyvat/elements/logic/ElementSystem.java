@@ -157,6 +157,9 @@ public final class ElementSystem {
         BlockPos center = target.blockPosition();
         int frozen = 0;
         for (BlockPos pos : BlockPos.withinManhattan(center, 2, 1, 2)) {
+            // 跳过实体自身所在格及其上方格：否则水变实心冰会把实体卡住并挤飞
+            // （冰史莱姆被自己的冰块顶飞摔死就是这个原因）
+            if (pos.equals(center) || pos.getY() > center.getY()) continue;
             if (level.getBlockState(pos).getBlock() == net.minecraft.world.level.block.Blocks.WATER) {
                 level.setBlock(pos, net.minecraft.world.level.block.Blocks.ICE.defaultBlockState(), 3);
                 frozen++;
