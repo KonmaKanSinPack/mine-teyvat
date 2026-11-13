@@ -40,4 +40,12 @@ public class ElementalSlimeEntity extends Slime {
             ElementSystem.applyElement(target, element(), 1.0, "mob:slime", this);
         }
     }
+
+    /** 跳跃/落地/死亡的碎屑粒子改为元素色（原版固定绿色 ITEM_SLIME） */
+    @Override
+    protected net.minecraft.core.particles.ParticleOptions getParticleType() {
+        return element().orbitParticle() != null
+                ? element().orbitParticle()
+                : net.minecraft.core.particles.ParticleTypes.ITEM_SLIME;
+    }
 }
