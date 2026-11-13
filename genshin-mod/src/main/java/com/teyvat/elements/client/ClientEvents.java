@@ -27,9 +27,9 @@ import net.neoforged.neoforge.event.entity.EntityLeaveLevelEvent;
  * 注册入口由 {@code TeyvatElements} 用 Dist 判断守护。</p>
  */
 public final class ClientEvents {
-    private static final float ICON_SIZE = 0.26f;
-    private static final float ICON_GAP = 0.32f;
-    private static final float HEIGHT_OFFSET = 0.4f;
+    private static final float ICON_SIZE = 0.42f;
+    private static final float ICON_GAP = 0.50f;
+    private static final float HEIGHT_OFFSET = 0.45f;
 
     /** 由主类在 Dist.CLIENT 下调用 */
     public static void register(IEventBus modEventBus) {
@@ -95,7 +95,8 @@ public final class ClientEvents {
             // 多附着横向排开，整体居中
             float x = (i - (n - 1) / 2.0f) * ICON_GAP;
             // 剩余量值映射为透明度：快衰减完的元素图标变淡，直观传达"快没了"
-            float alpha = Math.min(1.0f, Math.max(0.25f, aura.gauge()));
+            // 亮度下限 0.55，保证远距离也能看清（用户反馈：要大要亮）
+            float alpha = 0.55f + 0.45f * Math.min(1.0f, aura.gauge());
             drawIcon(pose, buffer, light, aura.element(), x, alpha);
         }
         pose.popPose();
