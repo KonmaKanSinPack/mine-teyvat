@@ -150,8 +150,9 @@ public final class ElementSystem {
         }
     }
 
-    /** 冰附着碰到水：把目标周围 2 格内的水方块替换为冰块 */
-    private static void freezeWaterAround(LivingEntity target) {
+    /** 冰附着碰到水：把目标周围 2 格内的水方块替换为冰块。
+     *  供挂冰（applyElement）与冰史莱姆本体 tick 共用。 */
+    public static void freezeWaterAround(LivingEntity target) {
         if (!(target.level() instanceof net.minecraft.server.level.ServerLevel level)) return;
         BlockPos center = target.blockPosition();
         int frozen = 0;

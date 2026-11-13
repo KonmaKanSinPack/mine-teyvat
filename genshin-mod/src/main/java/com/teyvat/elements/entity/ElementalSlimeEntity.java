@@ -48,4 +48,14 @@ public class ElementalSlimeEntity extends Slime {
                 ? element().orbitParticle()
                 : net.minecraft.core.particles.ParticleTypes.ITEM_SLIME;
     }
+
+    /** 冰史莱姆本体在水中时，周期性把周围水方块冻成冰（用户实测期望的行为） */
+    @Override
+    public void tick() {
+        super.tick();
+        if (!level().isClientSide && element() == Element.CRYO
+                && isInWater() && tickCount % 20 == 0) {
+            ElementSystem.freezeWaterAround(this);
+        }
+    }
 }
